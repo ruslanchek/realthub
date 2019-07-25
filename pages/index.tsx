@@ -8,7 +8,8 @@ interface Props {
 
 const Page: NextPage<Props> = ({ userAgent }) => (
 	<main>
-		Your user agent: <span css={styles.test}>{userAgent}</span>
+		Your user agent: <span css={styles.test}>{userAgent}</span>{' '}
+		{process.env.customKey}
 	</main>
 );
 
