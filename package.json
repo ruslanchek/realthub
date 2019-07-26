@@ -14,14 +14,18 @@
 	"license": "ISC",
 	"dependencies": {
 		"@emotion/core": "^10.0.14",
+		"eo-ui-kit": "^0.0.15",
+		"google-map-react": "^1.1.4",
 		"next": "^9.0.2",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
 		"typescript": "^3.5.3"
 	},
 	"devDependencies": {
+		"@types/google-map-react": "^0.23.12",
 		"@types/node": "^12.6.8",
 		"@types/react": "^16.8.23",
-		"@types/react-dom": "^16.8.5"
+		"@types/react-dom": "^16.8.5",
+		"tslib": "^1.10.0"
 	}
 }
