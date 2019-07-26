@@ -21,7 +21,5 @@ Page.getInitialProps = async ({ req }) => {
 export default Page;
 
 const styles = {
-	test: css`
-		background: red;
-	`,
+	test: css``,
 };
