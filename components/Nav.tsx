@@ -24,7 +24,7 @@ const styles = {
 		flex-shrink: 0;
 		display: flex;
 		justify-content: center;
-		background-color: #383186;
+		background-color: #d4e2f5;
 		box-sizing: border-box;
 	`,
 
@@ -33,7 +33,7 @@ const styles = {
 		background-size: 40px;
 		background-repeat: no-repeat;
 		background-position: 50%;
-		background-color: #5a50d0;
+		background-color: rgba(255, 255, 255, 0.3);
 		text-indent: -200px;
 		width: 70px;
 		height: 70px;

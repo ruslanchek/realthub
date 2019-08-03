@@ -1,7 +1,6 @@
 module.exports = {
 	target: 'serverless',
-	serverRuntimeConfig: {},
-	publicRuntimeConfig: {
+	env: {
 		GOOGLE_MAPS_API_KEY: 'AIzaSyCx2_EqHzYNxnEf0kURZFbjxYbuF8jqbK0',
 	},
 };
