@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
 import { NextPage } from 'next';
 import { Wrapper } from '../components/Wrapper';
 import { Nav } from '../components/Nav';
@@ -12,8 +10,9 @@ const Page: NextPage<Props> = ({ userAgent }) => (
 	<Wrapper>
 		<Nav />
 		<main>
-			Your user agent: <span css={styles.test}>{userAgent}</span>{' '}
-			{process.env.customKey} 934
+			Your user agent: {userAgent}
+			<br />
+			process.env.customKey: {process.env.customKey}
 		</main>
 	</Wrapper>
 );
@@ -24,7 +23,3 @@ Page.getInitialProps = async ({ req }) => {
 };
 
 export default Page;
-
-const styles = {
-	test: css``,
-};

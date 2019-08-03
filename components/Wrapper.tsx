@@ -1,17 +1,11 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { GlobalStyles, themeLight } from 'eo-ui-kit';
+import React from 'react';
 
 export const Wrapper: React.FC = props => {
-	return (
-		<GlobalStyles theme={themeLight}>
-			<main css={styles.root}>{props.children}</main>
-		</GlobalStyles>
-	);
+	return <main css={styles.root}>{props.children}</main>;
 };
 
 const styles = {
-	root: css`
-		display: flex;
-	`,
+	root: css``,
 };
