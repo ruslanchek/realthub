@@ -1,0 +1,12 @@
+{
+	"version": 2,
+	"alias": ["realthub.com", "realthub"],
+	"env": {},
+	"regions": ["zrh1"],
+	"public": false,
+	"routes": [
+		{ "src": "/(.*)", "dest": "/www/$1" },
+		{ "src": "/api/(.*)", "dest": "/api/$1" }
+	],
+	"builds": [{ "src": "www/next.config.js", "use": "@now/next" }]
+}

@@ -35,7 +35,7 @@ export function apiResponse<T = any>(
 }
 
 export function apiNotFound(res: NextApiResponse): void {
-	// res.status(404);
+	res.status(404);
 	apiResponse(res, {
 		error: 'E_NOT_FOUND',
 	});
