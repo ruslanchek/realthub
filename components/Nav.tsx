@@ -15,8 +15,8 @@ export const Nav: React.FC = () => {
 			</p>
 
 			<p>
-				<Link href={`/test/[id]`} as={`/test/123`} prefetch>
-					<a>xxx</a>
+				<Link href={`/test`} as={`/test`} prefetch>
+					<a>Test</a>
 				</Link>
 			</p>
 		</nav>

@@ -1,4 +1,5 @@
 import { NextApiResponse } from 'next';
+import { IApiResponse } from '../../meta/interfaces';
 
 export function times(
 	repeatNumber: number,
@@ -26,9 +27,16 @@ export function getById<T = any>(id: string, array: T[]): T | undefined {
 	return array.find(item => (item as any).id === id);
 }
 
+export function apiResponse<T = any>(
+	res: NextApiResponse,
+	response: IApiResponse<T>,
+) {
+	res.json(response);
+}
+
 export function apiNotFound(res: NextApiResponse): void {
 	res.status(404);
-	res.json({
+	apiResponse(res, {
 		error: 'E_NOT_FOUND',
 	});
 }

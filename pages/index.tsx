@@ -12,7 +12,8 @@ const Page: NextPage<Props> = ({ userAgent }) => (
 		<main>
 			Your user agent: {userAgent}
 			<br />
-			process.env.customKey: {process.env.customKey}
+			<br />
+			{process.env.GOOGLE_MAPS_API_KEY}
 		</main>
 	</Wrapper>
 );
