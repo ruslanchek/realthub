@@ -8,7 +8,7 @@
 		"build": "next build",
 		"start": "next start",
 		"deploy:staging": "now --target staging",
-		"deploy:production": "now --target production"
+		"deploy:production": "now --prod"
 	},
 	"author": "",
 	"license": "ISC",
