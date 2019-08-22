@@ -1,0 +1,11 @@
+{
+	"name": "Realthub",
+	"short_name": "Realthub",
+	"orientation": "landscape",
+	"display": "standalone",
+	"start_url": "/",
+	"gcm_sender_id": "",
+	"theme_color": "",
+	"background_color": "#00a2e5",
+	"icons": []
+}
