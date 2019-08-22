@@ -1,3 +1,5 @@
+const withOffline = require('next-offline');
+
 const env = process.env.NODE_ENV || 'development';
 const vars = {
 	development: {
@@ -14,7 +16,9 @@ const vars = {
 	},
 }[env];
 
-module.exports = {
+const nextConfig = {
 	target: 'serverless',
 	env: vars,
 };
+
+module.exports = withOffline(nextConfig);
