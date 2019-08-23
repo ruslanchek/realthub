@@ -18,11 +18,21 @@ export const PageHead: React.FC<IProps> = ({
 			<meta name="description" content={description} />
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			<link rel="manifest" href="/static/manifest.json" />
-			<link rel="shortcut icon" type="image/png" href="/static/favicon.ico" />
+			<link
+				rel="shortcut icon"
+				type="image/png"
+				href="/static/icons/favicon.ico"
+			/>
 			<link
 				rel="icon"
 				type="image/png"
-				href="/static/icon-512x512.png"
+				href="/static/icons/icon-192x192.png"
+				sizes="192x192"
+			/>
+			<link
+				rel="icon"
+				type="image/png"
+				href="/static/icons/icon-512x512.png"
 				sizes="512x512"
 			/>
 		</Head>
