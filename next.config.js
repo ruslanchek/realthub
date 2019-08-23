@@ -18,10 +18,8 @@ const vars = {
 
 const nextConfig = {
 	target: 'serverless',
+	registerSwPrefix: '/static',
 	env: vars,
-	workboxOpts: {
-		swDest: 'static/service-worker.js',
-	},
 };
 
 module.exports = withOffline(nextConfig);

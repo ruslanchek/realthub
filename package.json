@@ -10,7 +10,8 @@
 		"prod": "npm run build && npm run start",
 		"deploy:staging": "now --target staging",
 		"deploy:production": "now --prod",
-		"serve:local": "ssh -R 80:localhost:3000 serveo.net"
+		"serve:local": "ssh -R 80:localhost:3000 serveo.net",
+		"postbuild": "cp ./.next/service-worker.js ./static/service-worker.js"
 	},
 	"author": "",
 	"license": "ISC",

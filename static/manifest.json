@@ -5,7 +5,18 @@
 	"display": "standalone",
 	"start_url": "/",
 	"gcm_sender_id": "",
-	"theme_color": "",
+	"theme_color": "transparent",
 	"background_color": "#00a2e5",
-	"icons": []
+	"icons": [
+		{
+			"src": "/static/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "/static/icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		}
+	]
 }
