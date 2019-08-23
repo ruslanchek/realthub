@@ -17,8 +17,11 @@ const vars = {
 }[env];
 
 const nextConfig = {
-	// target: 'serverless',
+	target: 'serverless',
 	env: vars,
+	workboxOpts: {
+		swDest: 'static/service-worker.js',
+	},
 };
 
 module.exports = withOffline(nextConfig);
