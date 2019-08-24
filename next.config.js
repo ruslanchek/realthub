@@ -9,7 +9,7 @@ const vars = {
 		GOOGLE_MAPS_API_KEY: 'AIzaSyCx2_EqHzYNxnEf0kURZFbjxYbuF8jqbK0',
 	},
 	production: {
-		API_URL: 'https://prosum.serveo.net/api',
+		API_URL: 'https://realthub.com/api',
 		GOOGLE_MAPS_API_KEY: 'AIzaSyCx2_EqHzYNxnEf0kURZFbjxYbuF8jqbK0',
 	},
 }[env];
