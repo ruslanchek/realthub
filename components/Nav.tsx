@@ -16,6 +16,22 @@ export const Header: React.FC = () => {
 				<Link href={`/test`} as={`/test`}>
 					<a>Test</a>
 				</Link>
+
+				<Link href={`/test`} as={`/test`}>
+					<a>Test</a>
+				</Link>
+
+				<Link href={`/test`} as={`/test`}>
+					<a>Test</a>
+				</Link>
+
+				<Link href={`/test`} as={`/test`}>
+					<a>Test</a>
+				</Link>
+
+				<Link href={`/test`} as={`/test`}>
+					<a>Test</a>
+				</Link>
 			</nav>
 		</header>
 	);
@@ -25,18 +41,25 @@ const styles = {
 	root: css`
 		padding: 40px;
 		display: flex;
+		align-items: center;
 	`,
 
 	logo: css`
 		text-indent: -10000px;
 		background-image: url('/static/assets/logo.png');
 		background-size: contain;
-		width: 48px;
-		height: 48px;
+		width: 64px;
+		height: 64px;
 		display: block;
+		margin-right: 40px;
 	`,
 
 	nav: css`
 		display: flex;
+		align-items: center;
+
+		> a {
+			margin-right: 30px;
+		}
 	`,
 };
