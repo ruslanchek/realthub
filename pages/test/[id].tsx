@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { Wrapper } from '../../components/Wrapper';
-import { Nav } from '../../components/Nav';
+import { Header } from '../../components/Nav';
 import fetch from 'isomorphic-unfetch';
 import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';
@@ -12,7 +12,7 @@ interface IProps {
 const Page: NextPage<IProps> = ({ response }) => (
 	<Wrapper>
 		<PageHead title={response.data && response.data.title} />
-		<Nav />
+		<Header />
 		<main>
 			{response.data && (
 				<div>

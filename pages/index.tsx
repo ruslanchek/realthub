@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { Wrapper } from '../components/Wrapper';
-import { Nav } from '../components/Nav';
+import { Header } from '../components/Nav';
 import { PageHead } from '../components/Head';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 const Page: NextPage<Props> = ({ userAgent }) => (
 	<Wrapper>
 		<PageHead title="sss" description="xxx" />
-		<Nav />
+		<Header />
 		<main>
 			Your user agent: {userAgent}
 			<br />
