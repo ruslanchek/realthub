@@ -16,6 +16,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@emotion/core": "^10.0.14",
+		"color": "^3.1.2",
 		"eo-ui-kit": "^0.0.19",
 		"faker": "^4.1.0",
 		"google-map-react": "^1.1.4",
@@ -26,6 +27,7 @@
 		"typescript": "^3.5.3"
 	},
 	"devDependencies": {
+		"@types/color": "^3.0.0",
 		"@types/faker": "^4.1.5",
 		"@types/google-map-react": "^0.23.12",
 		"@types/node": "^12.6.8",

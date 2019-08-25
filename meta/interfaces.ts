@@ -3,7 +3,15 @@ export interface IApiResponse<T = any> {
 	error?: string;
 }
 
+export interface IPropertyImage {
+	id: string;
+	src: string;
+	title: string;
+	isDefault?: boolean;
+}
+
 export interface IProperty {
 	id: string;
 	title: string;
+	images: IPropertyImage[];
 }

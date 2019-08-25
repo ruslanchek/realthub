@@ -5,8 +5,8 @@ interface IProps {
 	description?: string;
 }
 
-const DEFAULT_TITLE = 'xxx';
-const DEFAULT_DESCRIPTION = 'sss';
+const DEFAULT_TITLE = 'Realthub';
+const DEFAULT_DESCRIPTION = '';
 
 export const PageHead: React.FC<IProps> = ({
 	title = DEFAULT_TITLE,
@@ -18,7 +18,14 @@ export const PageHead: React.FC<IProps> = ({
 			<meta name="description" content={description} />
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			<link rel="manifest" href="/static/manifest.json" />
-
+			<meta name="apple-mobile-web-app-title" content="Realthub" />
+			<meta name="application-name" content="Realthub" />
+			<meta name="msapplication-TileColor" content="#2b5797" />
+			<meta name="theme-color" content="#ffffff" />
+			<link
+				href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+				rel="stylesheet"
+			/>
 			<link
 				rel="apple-touch-icon"
 				sizes="180x180"
@@ -41,11 +48,6 @@ export const PageHead: React.FC<IProps> = ({
 				href="/static/icons/safari-pinned-tab.svg"
 				color="#0286ff"
 			/>
-			<meta name="apple-mobile-web-app-title" content="Realthub" />
-			<meta name="application-name" content="Realthub" />
-			<meta name="msapplication-TileColor" content="#2b5797" />
-			<meta name="theme-color" content="#ffffff" />
-
 			<link
 				rel="shortcut icon"
 				type="image/png"

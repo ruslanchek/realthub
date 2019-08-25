@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { Wrapper } from '../../components/Wrapper';
-import { Header } from '../../components/Nav';
+import { Header } from '../../components/Header';
 import fetch from 'isomorphic-unfetch';
 import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';

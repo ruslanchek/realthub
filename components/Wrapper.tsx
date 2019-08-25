@@ -2,18 +2,26 @@
 import { jsx, css, Global } from '@emotion/core';
 import React from 'react';
 import { GlobalStyles, themeLight, ITheme } from 'eo-ui-kit';
+import Color from 'color';
 
 const theme: ITheme = {
 	CONSTANTS: {
 		...themeLight.CONSTANTS,
+		FONT_FAMILY: "'Fira Sans', sans-serif",
 		FONT_SIZE_BASE: '17px',
 		FONT_SIZE_MEDIUM: '19px',
 		FONT_SIZE_LARGE: '25px',
 		FONT_SIZE_SMALL: '14px',
+
+		BORDER_RADIUS_LARGE: '15px',
+		BORDER_RADIUS_SMALL: '10px',
+		BORDER_RADIUS_TINY: '5px',
 	},
 
 	COLORS: {
 		...themeLight.COLORS,
+		TEXT_ACTIVE: Color('#4055ec'),
+		TEXT: Color('#243857'),
 	},
 };
 
