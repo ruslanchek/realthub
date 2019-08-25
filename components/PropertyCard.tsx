@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import { IProperty } from '../meta/interfaces';
+import { Love } from './Love';
 
 interface IProps {
 	property: IProperty;
@@ -12,8 +13,18 @@ export const PropertyCard: React.FC<IProps> = props => {
 
 	return (
 		<div css={styles.root}>
+			<Love enabled={false} styles={styles.love} />
 			<img src={image.src} width={300} height={200} alt={image.title} />
-			<div css={styles.title}>{property.title}</div>
+			<div css={styles.info}>
+				<div css={styles.price}>$1950</div>
+				<div css={styles.title}>{property.title}</div>
+				<div css={styles.address}>{property.address}</div>
+				<div css={styles.params}>
+					{property.params.map(param => (
+						<span key={param.id}>{param.title}</span>
+					))}
+				</div>
+			</div>
 		</div>
 	);
 };
@@ -30,11 +41,41 @@ const styles = {
 			0px 10px 10px rgba(0, 0, 0, 0.04);
 	`,
 
-	title: css`
+	love: css`
 		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		padding: 15px 20px;
+		top: 10px;
+		right: 10px;
+	`,
+
+	info: css`
+		padding: 10px 20px;
+	`,
+
+	price: css`
+		font-weight: 700;
+		color: rgb(var(--TEXT_ACTIVE));
+	`,
+
+	title: css`
+		font-weight: 700;
+		margin-top: 0.25em;
+	`,
+
+	address: css`
+		font-size: var(--FONT_SIZE_SMALL);
+		margin-top: 1em;
+	`,
+
+	params: css`
+		font-size: var(--FONT_SIZE_SMALL);
+		font-weight: 700;
+		margin-top: 1em;
+
+		> span {
+			margin-right: 1ex;
+			background-color: #eee;
+			border-radius: 4px;
+			padding: 3px 6px;
+		}
 	`,
 };

@@ -8,6 +8,8 @@ const theme: ITheme = {
 	CONSTANTS: {
 		...themeLight.CONSTANTS,
 		FONT_FAMILY: "'Fira Sans', sans-serif",
+		GLOBAL_LINE_HEIGHT: '1.3',
+
 		FONT_SIZE_BASE: '17px',
 		FONT_SIZE_MEDIUM: '19px',
 		FONT_SIZE_LARGE: '25px',

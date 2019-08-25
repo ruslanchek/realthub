@@ -10,8 +10,15 @@ export interface IPropertyImage {
 	isDefault?: boolean;
 }
 
+export interface IPropertyParam {
+	id: string;
+	title: string;
+}
+
 export interface IProperty {
 	id: string;
 	title: string;
+	address: string;
 	images: IPropertyImage[];
+	params: IPropertyParam[];
 }

@@ -23,7 +23,7 @@ export const PageHead: React.FC<IProps> = ({
 			<meta name="msapplication-TileColor" content="#2b5797" />
 			<meta name="theme-color" content="#ffffff" />
 			<link
-				href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+				href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
 				rel="stylesheet"
 			/>
 			<link

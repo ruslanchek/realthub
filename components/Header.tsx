@@ -45,10 +45,12 @@ const styles = {
 		background-image: url('/static/assets/logo.png');
 		background-size: contain;
 		background-repeat: no-repeat;
-		width: 172px;
-		height: 46px;
+		width: 190px;
+		height: 35px;
 		display: block;
 		margin-right: 40px;
+		top: -6px;
+		position: relative;
 	`,
 
 	nav: css`

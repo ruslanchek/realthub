@@ -17,6 +17,7 @@ const Page: NextPage<IProps> = ({ response }) => (
 	<Wrapper>
 		<PageHead />
 		<Header />
+
 		<main css={styles.items}>
 			{response.data &&
 				response.data.map(item => (

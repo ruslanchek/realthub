@@ -17,13 +17,14 @@
 	"dependencies": {
 		"@emotion/core": "^10.0.14",
 		"color": "^3.1.2",
-		"eo-ui-kit": "^0.0.19",
+		"eo-ui-kit": "0.0.20",
 		"faker": "^4.1.0",
 		"google-map-react": "^1.1.4",
 		"isomorphic-unfetch": "^3.0.0",
 		"next": "^9.0.4",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
+		"react-icons": "^3.7.0",
 		"typescript": "^3.5.3"
 	},
 	"devDependencies": {
