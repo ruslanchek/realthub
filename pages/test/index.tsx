@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import { NextPage } from 'next';
-import Link from 'next/link';
 import { Wrapper } from '../../components/Wrapper';
 import { Header } from '../../components/Header';
 import fetch from 'isomorphic-unfetch';
 import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';
 import { PropertyCard } from '../../components/PropertyCard';
+import { CustomScrollbars } from 'eo-ui-kit';
 
 interface IProps {
 	response: IApiResponse<IProperty[]>;
@@ -19,14 +19,12 @@ const Page: NextPage<IProps> = ({ response }) => (
 		<Header />
 
 		<main css={styles.items}>
-			{response.data &&
-				response.data.map(item => (
-					<div key={item.id} css={styles.item}>
-						<Link href={`/test/[id]`} as={`/test/${item.id}`}>
-							<PropertyCard property={item} />
-						</Link>
-					</div>
-				))}
+			<CustomScrollbars>
+				<div css={styles.itemsContainer}>
+					{response.data &&
+						response.data.map(item => <PropertyCard property={item} />)}
+				</div>
+			</CustomScrollbars>
 		</main>
 	</Wrapper>
 );
@@ -38,13 +36,18 @@ Page.getInitialProps = async () => {
 
 const styles = {
 	items: css`
+		width: 100%;
+		overflow: auto;
+	`,
+
+	itemsContainer: css`
 		display: flex;
 		justify-content: space-between;
 		padding: 0 20px;
 	`,
 
 	item: css`
-		padding: 20px;
+		padding: 45px 20px;
 	`,
 };
 

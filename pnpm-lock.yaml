@@ -1,13 +1,13 @@
 dependencies:
-  '@emotion/core': 10.0.14_react@16.8.6
+  '@emotion/core': 10.0.14_react@16.9.0
   color: 3.1.2
   eo-ui-kit: 0.0.20
   faker: 4.1.0
-  google-map-react: 1.1.4_react-dom@16.8.6+react@16.8.6
+  google-map-react: 1.1.4_react-dom@16.8.6+react@16.9.0
   isomorphic-unfetch: 3.0.0
-  next: 9.0.4_react-dom@16.8.6+react@16.8.6
-  react: 16.8.6
-  react-dom: 16.8.6_react@16.8.6
+  next: 9.0.4_react-dom@16.8.6+react@16.9.0
+  react: 16.9.0
+  react-dom: 16.8.6_react@16.9.0
   react-icons: 3.7.0
   typescript: 3.5.3
 devDependencies:
@@ -1666,7 +1666,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8VthgeKhlGeTXSW1JN7I14AnAaiFPbOrqNqg3dPoGCZ3bnMjkrmRU0zrx0BtBw9esBaPaQgDB9y0tVgAGT2Mrg==
-  /@emotion/core/10.0.14_react@16.8.6:
+  /@emotion/core/10.0.14_react@16.9.0:
     dependencies:
       '@babel/runtime': 7.5.5
       '@emotion/cache': 10.0.14
@@ -1674,7 +1674,7 @@ packages:
       '@emotion/serialize': 0.11.8
       '@emotion/sheet': 0.9.3
       '@emotion/utils': 0.11.2
-      react: 16.8.6
+      react: 16.9.0
     dev: false
     peerDependencies:
       react: '>=16.3.0'
@@ -6010,12 +6010,12 @@ packages:
     optional: true
     resolution:
       integrity: sha1-1TswzfkxPf+33JoNR3CWqm0UXFA=
-  /google-map-react/1.1.4_react-dom@16.8.6+react@16.8.6:
+  /google-map-react/1.1.4_react-dom@16.8.6+react@16.9.0:
     dependencies:
       '@mapbox/point-geometry': 0.1.0
       eventemitter3: 1.2.0
-      react: 16.8.6
-      react-dom: 16.8.6_react@16.8.6
+      react: 16.9.0
+      react-dom: 16.8.6_react@16.9.0
       scriptjs: 2.5.9
     dev: false
     peerDependencies:
@@ -8178,7 +8178,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
-  /next-server/9.0.4_react-dom@16.8.6+react@16.8.6:
+  /next-server/9.0.4_react-dom@16.8.6+react@16.9.0:
     dependencies:
       '@ampproject/toolbox-optimizer': 1.0.1
       compression: 1.7.4
@@ -8190,11 +8190,11 @@ packages:
       path-to-regexp: 2.1.0
       prop-types: 15.7.2
       raw-body: 2.4.0
-      react: 16.8.6
-      react-dom: 16.8.6_react@16.8.6
+      react: 16.9.0
+      react-dom: 16.8.6_react@16.9.0
       react-is: 16.8.6
       send: 0.17.1
-      styled-jsx: 3.2.1_react@16.8.6
+      styled-jsx: 3.2.1_react@16.9.0
       url: 0.11.0
     dev: false
     engines:
@@ -8204,7 +8204,7 @@ packages:
       react-dom: ^16.6.0
     resolution:
       integrity: sha512-dnHOBTQSuGukkOPtJDRtcQX75LDNOcXH71hWOICPUtIh91QIt/MSZguIR/Uv8QFBNHoYTUe47rXHjx/+uy872g==
-  /next/9.0.4_react-dom@16.8.6+react@16.8.6:
+  /next/9.0.4_react-dom@16.8.6+react@16.9.0:
     dependencies:
       '@babel/core': 7.4.5
       '@babel/plugin-proposal-class-properties': 7.4.4_@babel+core@7.4.5
@@ -8231,18 +8231,18 @@ packages:
       launch-editor: 2.2.1
       loader-utils: 1.2.3
       mkdirp: 0.5.1
-      next-server: 9.0.4_react-dom@16.8.6+react@16.8.6
+      next-server: 9.0.4_react-dom@16.8.6+react@16.9.0
       prop-types: 15.7.2
       prop-types-exact: 1.2.0
-      react: 16.8.6
-      react-dom: 16.8.6_react@16.8.6
+      react: 16.9.0
+      react-dom: 16.8.6_react@16.9.0
       react-error-overlay: 5.1.6
       react-is: 16.8.6
       serialize-javascript: 1.7.0
       source-map: 0.6.1
       string-hash: 1.1.3
       strip-ansi: 5.2.0
-      styled-jsx: 3.2.1_react@16.8.6
+      styled-jsx: 3.2.1_react@16.9.0
       terser: 4.0.0
       tty-aware-progress: 1.0.4
       unfetch: 4.1.0
@@ -9978,12 +9978,12 @@ packages:
       node: '>=8.10'
     resolution:
       integrity: sha512-OyInhcwsvycQ3Zr2pQN+HV4gtRXrky5mJXIy4HnqrWa+mI624xfYfqGuC9dYbxp4Qq3YZzP8GSGQjv0AgNU15w==
-  /react-dom/16.8.6_react@16.8.6:
+  /react-dom/16.8.6_react@16.9.0:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.7.2
-      react: 16.8.6
+      react: 16.9.0
       scheduler: 0.13.6
     dev: false
     peerDependencies:
@@ -10065,17 +10065,6 @@ packages:
       react-dom: ^15.0.0 || ^16.0.0
     resolution:
       integrity: sha512-HeTwlNa37AFa8MDZFZOKcNEkuF2YflA0hpGPiTT9vR7OawEt+GZbfM6wqkBahD3D3pUjIabQYzsnY/BSJbgq6Q==
-  /react/16.8.6:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      prop-types: 15.7.2
-      scheduler: 0.13.6
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
   /react/16.9.0:
     dependencies:
       loose-envify: 1.4.0
@@ -11163,13 +11152,13 @@ packages:
       node: '>= 0.12.0'
     resolution:
       integrity: sha512-XK+uv9kWwhZMZ1y7mysB+zoihsEj4wneFWAS5qoiLwzW0WzSqMrrsIy+a3zkQJq0ipFtBpX5W3MqyRIBF/WFGg==
-  /styled-jsx/3.2.1_react@16.8.6:
+  /styled-jsx/3.2.1_react@16.9.0:
     dependencies:
       babel-plugin-syntax-jsx: 6.18.0
       babel-types: 6.26.0
       convert-source-map: 1.6.0
       loader-utils: 1.2.3
-      react: 16.8.6
+      react: 16.9.0
       source-map: 0.7.3
       string-hash: 1.1.3
       stylis: 3.5.4
@@ -12460,7 +12449,7 @@ specifiers:
   isomorphic-unfetch: ^3.0.0
   jimp: ^0.6.4
   next: ^9.0.4
-  react: ^16.8.6
+  react: ^16.9.0
   react-dom: ^16.8.6
   react-icons: ^3.7.0
   tslib: ^1.10.0

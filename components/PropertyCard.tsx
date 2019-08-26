@@ -38,7 +38,8 @@ const styles = {
 	root: css`
 		background-color: white;
 		width: 300px;
-		height: 400px;
+		flex-shrink: 0;
+		margin: 0 20px 45px;
 		border-radius: var(--BORDER_RADIUS_LARGE);
 		position: relative;
 		overflow: hidden;
