@@ -18,7 +18,6 @@ export const PropertyCard: React.FC<IProps> = props => {
 			<div css={styles.info}>
 				<div css={styles.price}>${property.price}</div>
 				<div css={styles.title}>{property.title}</div>
-
 				<footer css={styles.footer}>
 					<div css={styles.address}>{property.address}</div>
 					<div css={styles.params}>
