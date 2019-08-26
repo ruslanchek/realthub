@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
 
 			<nav css={styles.nav}>
 				<Link href={`/test`} as={`/test`}>
-					<a>Memo properties</a>
+					<a>Loved properties</a>
 				</Link>
 
 				<Link href={`/test`} as={`/test`}>
@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
 				</Link>
 
 				<Link href={`/test`} as={`/test`}>
-					<a>List your property</a>
+					<a>List a Property</a>
 				</Link>
 
 				<Link href={`/test`} as={`/test`}>

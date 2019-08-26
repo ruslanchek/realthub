@@ -16,14 +16,19 @@ export const PropertyCard: React.FC<IProps> = props => {
 			<Love enabled={false} styles={styles.love} />
 			<img src={image.src} width={300} height={200} alt={image.title} />
 			<div css={styles.info}>
-				<div css={styles.price}>$1950</div>
+				<div css={styles.price}>${property.price}</div>
 				<div css={styles.title}>{property.title}</div>
-				<div css={styles.address}>{property.address}</div>
-				<div css={styles.params}>
-					{property.params.map(param => (
-						<span key={param.id}>{param.title}</span>
-					))}
-				</div>
+
+				<footer css={styles.footer}>
+					<div css={styles.address}>{property.address}</div>
+					<div css={styles.params}>
+						{property.params.map(param => (
+							<span key={param.id}>
+								{param.value} {param.type}
+							</span>
+						))}
+					</div>
+				</footer>
 			</div>
 		</div>
 	);
@@ -39,6 +44,9 @@ const styles = {
 		overflow: hidden;
 		box-shadow: 0px 20px 25px rgba(175, 175, 175, 0.16),
 			0px 10px 10px rgba(0, 0, 0, 0.04);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
 	`,
 
 	love: css`
@@ -48,7 +56,11 @@ const styles = {
 	`,
 
 	info: css`
-		padding: 10px 20px;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		flex-grow: 1;
 	`,
 
 	price: css`
@@ -64,18 +76,27 @@ const styles = {
 	address: css`
 		font-size: var(--FONT_SIZE_SMALL);
 		margin-top: 1em;
+		color: rgb(var(--TEXT_FADED));
 	`,
 
 	params: css`
 		font-size: var(--FONT_SIZE_SMALL);
-		font-weight: 700;
+		font-weight: 500;
 		margin-top: 1em;
 
 		> span {
 			margin-right: 1ex;
-			background-color: #eee;
+			background-color: rgba(var(--TEXT), 0.075);
 			border-radius: 4px;
 			padding: 3px 6px;
 		}
+	`,
+
+	footer: css`
+		justify-self: flex-end;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		flex-grow: 1;
 	`,
 };

@@ -34,7 +34,7 @@ const styles = {
 		box-sizing: border-box;
 		width: 34px;
 		height: 34px;
-		line-height: 46px;
+		line-height: 47px;
 		border-radius: 50%;
 		text-align: center;
 		cursor: pointer;

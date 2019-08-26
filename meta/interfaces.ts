@@ -12,13 +12,15 @@ export interface IPropertyImage {
 
 export interface IPropertyParam {
 	id: string;
-	title: string;
+	value: string;
+	type: string;
 }
 
 export interface IProperty {
 	id: string;
 	title: string;
 	address: string;
+	price: string;
 	images: IPropertyImage[];
 	params: IPropertyParam[];
 }

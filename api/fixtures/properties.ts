@@ -19,13 +19,15 @@ export const properties = generate<IProperty>(10, propertyIndex => {
 	const params = generate<IPropertyParam>(2, () => {
 		return {
 			id: faker.random.uuid(),
-			title: '2 Beds',
+			value: faker.random.number({ min: 1, max: 4 }).toString(),
+			type: faker.lorem.word(),
 		};
 	});
 
 	return {
 		id: propertyIndex.toString(),
 		title: faker.lorem.sentence(),
+		price: faker.finance.amount(),
 		address: faker.address.streetAddress(),
 		params,
 		images,
