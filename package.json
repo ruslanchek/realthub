@@ -18,7 +18,7 @@
 		"@emotion/core": "^10.0.14",
 		"@w11r/use-breakpoint": "^1.0.1",
 		"color": "^3.1.2",
-		"eo-ui-kit": "^0.0.22",
+		"eo-ui-kit": "^0.0.24",
 		"faker": "^4.1.0",
 		"google-map-react": "^1.1.4",
 		"isomorphic-unfetch": "^3.0.0",

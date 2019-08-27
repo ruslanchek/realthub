@@ -22,7 +22,9 @@ const Page: NextPage<IProps> = ({ response }) => (
 			<CustomScrollbars>
 				<div css={styles.itemsContainer}>
 					{response.data &&
-						response.data.map(item => <PropertyCard property={item} />)}
+						response.data.map(item => (
+							<PropertyCard key={item.id} property={item} />
+						))}
 				</div>
 			</CustomScrollbars>
 		</main>
