@@ -7,7 +7,6 @@ import fetch from 'isomorphic-unfetch';
 import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';
 import { PropertyCard } from '../../components/PropertyCard';
-import { CustomScrollbars } from 'eo-ui-kit';
 
 interface IProps {
 	response: IApiResponse<IProperty[]>;
@@ -19,14 +18,12 @@ const Page: NextPage<IProps> = ({ response }) => (
 		<Header />
 
 		<main css={styles.items}>
-			<CustomScrollbars>
-				<div css={styles.itemsContainer}>
-					{response.data &&
-						response.data.map(item => (
-							<PropertyCard key={item.id} property={item} />
-						))}
-				</div>
-			</CustomScrollbars>
+			<div css={styles.itemsContainer}>
+				{response.data &&
+					response.data.map(item => (
+						<PropertyCard key={item.id} property={item} />
+					))}
+			</div>
 		</main>
 	</Wrapper>
 );
