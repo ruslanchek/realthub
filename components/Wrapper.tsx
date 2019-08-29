@@ -5,6 +5,10 @@ import { GlobalStyles, themeLight, ITheme } from 'eo-ui-kit';
 import Color from 'color';
 
 const theme: ITheme = {
+	BREAKPOINTS: {
+		...themeLight.BREAKPOINTS,
+	},
+
 	CONSTANTS: {
 		...themeLight.CONSTANTS,
 		FONT_FAMILY: "'Fira Sans', sans-serif",

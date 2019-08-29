@@ -2,7 +2,7 @@ dependencies:
   '@emotion/core': 10.0.14_react@16.9.0
   '@w11r/use-breakpoint': 1.0.1
   color: 3.1.2
-  eo-ui-kit: 0.0.24
+  eo-ui-kit: 0.0.25
   faker: 4.1.0
   google-map-react: 1.1.4_react-dom@16.8.6+react@16.9.0
   isomorphic-unfetch: 3.0.0
@@ -3449,7 +3449,7 @@ packages:
   /bonjour/3.5.0:
     dependencies:
       array-flatten: 2.1.2
-      deep-equal: 1.0.1
+      deep-equal: 1.1.0
       dns-equal: 1.0.0
       dns-txt: 2.0.2
       multicast-dns: 6.2.3
@@ -4542,10 +4542,17 @@ packages:
       node: '>=0.10'
     resolution:
       integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
-  /deep-equal/1.0.1:
+  /deep-equal/1.1.0:
+    dependencies:
+      is-arguments: 1.0.4
+      is-date-object: 1.0.1
+      is-regex: 1.0.4
+      object-is: 1.0.1
+      object-keys: 1.1.1
+      regexp.prototype.flags: 1.2.0
     dev: false
     resolution:
-      integrity: sha1-9dJgKStmDghO/0zbyfCK0yR0SLU=
+      integrity: sha512-ZbfWJq/wN1Z273o7mUSjILYqehAktR2NVoSrOukDkU9kg2v/Uv89yU4Cvz8seJeAmtN5oqiefKq8FPuXOboqLw==
   /deep-is/0.1.3:
     dev: false
     resolution:
@@ -4887,7 +4894,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-D9f7V0JSRwIxlRI2mjMqufDrRDnx8p+eEOz7aUM9SuvF8gsBzra0/6tbjl1m8eQHrZlYj6PxqE00hZ1SAIKPLw==
-  /eo-react-custom-scrollbars/5.2.1_react-dom@16.9.0+react@16.9.0:
+  /eo-react-custom-scrollbars/5.2.5_react-dom@16.9.0+react@16.9.0:
     dependencies:
       dom-css: 2.1.0
       prop-types: 15.7.2
@@ -4899,8 +4906,8 @@ packages:
       react: ^0.14.0 || ^15.0.0 || ^16.0.0
       react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0
     resolution:
-      integrity: sha512-3Ympf6gNh8KC4qUFaL08N3LlJ9DVxppZuL3Ne/GBYHaqkEFem08PpumWLpkqCj1X566XX4OVmbuDhM27ofCEHg==
-  /eo-ui-kit/0.0.24:
+      integrity: sha512-oZ0Wn5ijUBQ6939VfOA1NpNqs05+q0lV33J0Q5eFG/cM5Q2+WGuLSeEoXJYxDQkTm/i3u2OHs0SSIszqvES5EQ==
+  /eo-ui-kit/0.0.25:
     dependencies:
       '@babel/core': 7.4.3
       '@emotion/core': 10.0.16_react@16.9.0
@@ -4910,7 +4917,6 @@ packages:
       '@types/node': 12.0.1
       '@typescript-eslint/eslint-plugin': 1.6.0_eslint@5.16.0+typescript@3.4.5
       '@typescript-eslint/parser': 1.6.0_eslint@5.16.0+typescript@3.4.5
-      '@w11r/use-breakpoint': 1.0.1
       babel-eslint: 10.0.1_eslint@5.16.0
       babel-jest: 24.9.0_@babel+core@7.4.3
       babel-loader: 8.0.5_@babel+core@7.4.3+webpack@4.29.6
@@ -4922,7 +4928,7 @@ packages:
       css-loader: 2.1.1_webpack@4.29.6
       dotenv: 6.2.0
       dotenv-expand: 4.2.0
-      eo-react-custom-scrollbars: 5.2.1_react-dom@16.9.0+react@16.9.0
+      eo-react-custom-scrollbars: 5.2.5_react-dom@16.9.0+react@16.9.0
       eslint: 5.16.0
       eslint-config-react-app: 4.0.1_32dd3f8dccfc1a737bc729a8c558c233
       eslint-loader: 2.1.2_eslint@5.16.0+webpack@4.29.6
@@ -4970,7 +4976,7 @@ packages:
       workbox-webpack-plugin: 4.2.0_webpack@4.29.6
     dev: false
     resolution:
-      integrity: sha512-dsS0sAG74O6Qq2lwXn12irkH7tX6Ah0w/sacOQPCW98osH8YbfLHASXJLFSBBAlauLcZIz2UjU27opZP570RBQ==
+      integrity: sha512-0nwpmsBaILideMi4CBtNbPxPilFpQKUvuSejzJFxpm65LiRBHzJQprRiZB31GOfHGTACF7K5bZi3AokmcPWQDA==
   /errno/0.1.7:
     dependencies:
       prr: 1.0.1
@@ -5698,14 +5704,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-3Z4XhFZ3992uIq0XOqb9AreonueSYphE6oYbpt5+3u06JWklbsPkNv3ZKkP9Bz/r+1MWCaMoSQ28P85+1Yc77w==
-  /follow-redirects/1.7.0:
+  /follow-redirects/1.8.1:
     dependencies:
       debug: 3.2.6
     dev: false
     engines:
       node: '>=4.0'
     resolution:
-      integrity: sha512-m/pZQy4Gj287eNy94nivy5wchN3Kp+Q5WgUPNy5lJSZ3sgkVKSYV/ZChMAQVIgx1SqfZ2zBZtPA2YlXIWxxJOQ==
+      integrity: sha512-micCIbldHioIegeKs41DoH0KS3AXfFzgS30qVkM6z/XOE/GJgvmsoc839NUqa1B9udYe9dQxgv7KFwng6+p/dw==
   /for-each/0.3.3:
     dependencies:
       is-callable: 1.1.4
@@ -6323,7 +6329,7 @@ packages:
   /http-proxy/1.17.0:
     dependencies:
       eventemitter3: 3.1.2
-      follow-redirects: 1.7.0
+      follow-redirects: 1.8.1
       requires-port: 1.0.0
     dev: false
     engines:
@@ -6575,6 +6581,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-A1IGAPO5AW9vSh7omxIlOGwIqEvpW/TA+DksVOPM5ODuxKlZS09+TEM1E3275lJqO2oJ38vDpeAL3DCIiHE6eA==
+  /is-arguments/1.0.4:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-xPh0Rmt8NE65sNzvyUmWgI1tz3mKq74lGA0mL8LYZcoIzKOzDh6HmrYm3d18k60nHerC8A9Km8kYu87zfSFnLA==
   /is-arrayish/0.2.1:
     dev: false
     resolution:
@@ -8410,6 +8422,12 @@ packages:
       node: '>= 0.10.0'
     resolution:
       integrity: sha512-OSuu/pU4ENM9kmREg0BdNrUDIl1heYa4mBZacJc+vVWz4GtAwu7jO8s4AIt2aGRUTqxykpWzI3Oqnsm13tTMDA==
+  /object-is/1.0.1:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha1-CqYOyZiaCz7Xlc9NBvYs8a1lObY=
   /object-keys/1.1.1:
     engines:
       node: '>= 0.4'
@@ -10197,6 +10215,14 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-7/l/DgapVVDzZobwMCCgMlqiqyLFJ0cduo/j+3BcDJIB+yJdsYCfKuI3l/04NV+H/rfNRdPIDbXNZHM9XvQatg==
+  /regexp.prototype.flags/1.2.0:
+    dependencies:
+      define-properties: 1.1.3
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-ztaw4M1VqgMwl9HlPpOuiYgItcHlunW0He2fE6eNfT6E/CF2FtYi9ofOYe4mKntstYk0Fyh/rDRBdS3AnxjlrA==
   /regexpp/2.0.1:
     dev: false
     engines:
@@ -12429,7 +12455,7 @@ specifiers:
   babel-plugin-syntax-jsx: ^6.18.0
   babel-plugin-transform-define: ^1.3.1
   color: ^3.1.2
-  eo-ui-kit: ^0.0.24
+  eo-ui-kit: ^0.0.25
   faker: ^4.1.0
   google-map-react: ^1.1.4
   isomorphic-unfetch: ^3.0.0
