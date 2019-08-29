@@ -23,4 +23,8 @@ export interface IProperty {
   price: string;
   images: IPropertyImage[];
   params: IPropertyParam[];
+  geo: {
+    lat: number;
+    lng: number;
+  };
 }
