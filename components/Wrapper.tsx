@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css, Global } from '@emotion/core';
 import React from 'react';
-import { GlobalStyles, themeLight, ITheme } from 'eo-ui-kit';
+import { GlobalStyles, themeLight, ITheme } from '../ui/module';
 import Color from 'color';
 
 const theme: ITheme = {
