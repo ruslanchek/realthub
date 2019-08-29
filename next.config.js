@@ -15,7 +15,6 @@ const vars = {
 }[env];
 
 const nextConfig = {
-	target: 'serverless',
 	env: vars,
 };
 
