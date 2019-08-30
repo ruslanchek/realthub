@@ -10,15 +10,19 @@ interface IProps {
 
 export const Header: React.FC<IProps> = ({ theme }) => {
   return (
-    <header css={[styles.root, styles.theme[theme]]}>
+    <header css={[styles.root, styles.rootTheme[theme]]}>
       <Link href={PATHS.HOME}>
-        <a href={PATHS.HOME} css={styles.logo}>
+        <a href={PATHS.HOME} css={[styles.logo, styles.logoTheme[theme]]}>
           Realthub
         </a>
       </Link>
 
-      <nav css={styles.nav}>
-        <Link href={`/test`} as={`/test`}>
+      <nav css={[styles.nav, styles.navTheme[theme]]}>
+        <Link href={`/search`} as={`/search`}>
+          <a>Search</a>
+        </Link>
+
+        <Link href={`/search`} as={`/search`}>
           <a>Loved properties</a>
         </Link>
 
@@ -36,7 +40,7 @@ export const Header: React.FC<IProps> = ({ theme }) => {
       </nav>
 
       <div css={styles.user}>
-        <Button type="button" color="default" size="small">
+        <Button type="button" color="white" size="small">
           Sign In
         </Button>
       </div>
@@ -46,18 +50,18 @@ export const Header: React.FC<IProps> = ({ theme }) => {
 
 const styles = {
   root: css`
-    padding: 40px;
     display: flex;
     align-items: center;
   `,
 
-  theme: {
+  rootTheme: {
     main: css`
       padding: 40px;
     `,
 
     inner: css`
-      padding: 30px 40px;
+      padding: 15px 40px;
+      background: rgb(var(--TEXT_ACTIVE));
     `,
   },
 
@@ -70,23 +74,63 @@ const styles = {
 
   logo: css`
     text-indent: -10000px;
-    background-image: url('/static/assets/logo.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 190px;
-    height: 35px;
+    flex-shrink: 0;
     display: block;
     margin-right: 40px;
     top: -6px;
     position: relative;
   `,
 
+  logoTheme: {
+    main: css`
+      background-image: url('/static/assets/logo.png');
+      width: 190px;
+      height: 35px;
+      top: -6px;
+    `,
+
+    inner: css`
+      background-image: url('/static/assets/logo-w.png');
+      width: 141px;
+      height: 26px;
+      top: -4px;
+    `,
+  },
+
   nav: css`
     display: flex;
     align-items: center;
 
-    > a {
+    > a,
+    > a:link {
       margin-right: 30px;
+      white-space: nowrap;
     }
   `,
+
+  navTheme: {
+    main: css`
+      > a,
+      > a:link {
+        color: rgb(var(--TEXT_ACTIVE));
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    `,
+
+    inner: css`
+      > a,
+      > a:link {
+        color: rgb(var(--BUTTON_TEXT));
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    `,
+  },
 };

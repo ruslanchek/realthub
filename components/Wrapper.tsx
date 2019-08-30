@@ -35,16 +35,20 @@ const theme: ITheme = {
 
 export const Wrapper: React.FC = props => {
   return (
-    <main css={styles.root}>
+    <div css={styles.root}>
       <Global styles={styles.global} />
       <GlobalStyles theme={theme} />
       {props.children}
-    </main>
+    </div>
   );
 };
 
 const styles = {
-  root: css``,
+  root: css`
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  `,
 
   global: css``,
 };

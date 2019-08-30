@@ -14,7 +14,8 @@ interface IProps {
     | 'faded'
     | 'danger'
     | 'facebook'
-    | 'google';
+    | 'google'
+    | 'white';
   disabled?: boolean;
   loading?: boolean;
   icon?: EIconName | undefined;
@@ -283,6 +284,31 @@ const styles = {
     google: css`
       background-color: rgb(var(--BUTTON_GOOGLE));
       color: rgb(var(--TEXT_FADED));
+
+      &:hover {
+        background-color: hsl(var(--BUTTON_GOOGLE_HSL_DARKEN));
+      }
+
+      &:active {
+        background-color: hsl(var(--BUTTON_GOOGLE_HSL_LIGHTEN));
+        box-shadow: 0 0 0 0 rgba(var(--BUTTON_GOOGLE), 0);
+      }
+
+      &.focus {
+        background-color: rgb(var(--BUTTON_GOOGLE));
+        box-shadow: 0 0 0 3px rgba(var(--BUTTON_GOOGLE), 0.33);
+
+        &:active {
+          background-color: hsl(var(--BUTTON_GOOGLE_HSL_LIGHTEN));
+          box-shadow: 0 0 0 3px rgba(var(--BUTTON_GOOGLE), 0.33),
+            0 0 0 0 rgba(var(--BUTTON_GOOGLE), 0);
+        }
+      }
+    `,
+
+    white: css`
+      background-color: #fff;
+      color: rgb(var(--TEXT_ACTIVE));
 
       &:hover {
         background-color: hsl(var(--BUTTON_GOOGLE_HSL_DARKEN));
