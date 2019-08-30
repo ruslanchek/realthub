@@ -2,63 +2,91 @@
 import { jsx, css } from '@emotion/core';
 import Link from 'next/link';
 import { PATHS } from '../common/constants';
+import { Button } from '../ui/ui/form/Button';
 
-export const Header: React.FC = () => {
-	return (
-		<header css={styles.root}>
-			<Link href={PATHS.HOME}>
-				<a href={PATHS.HOME} css={styles.logo}>
-					Realthub
-				</a>
-			</Link>
+interface IProps {
+  theme: 'main' | 'inner';
+}
 
-			<nav css={styles.nav}>
-				<Link href={`/test`} as={`/test`}>
-					<a>Loved properties</a>
-				</Link>
+export const Header: React.FC<IProps> = ({ theme }) => {
+  return (
+    <header css={[styles.root, styles.theme[theme]]}>
+      <Link href={PATHS.HOME}>
+        <a href={PATHS.HOME} css={styles.logo}>
+          Realthub
+        </a>
+      </Link>
 
-				<Link href={`/test`} as={`/test`}>
-					<a>Moving center</a>
-				</Link>
+      <nav css={styles.nav}>
+        <Link href={`/test`} as={`/test`}>
+          <a>Loved properties</a>
+        </Link>
 
-				<Link href={`/test`} as={`/test`}>
-					<a>List a Property</a>
-				</Link>
+        <Link href={`/test`} as={`/test`}>
+          <a>Moving center</a>
+        </Link>
 
-				<Link href={`/test`} as={`/test`}>
-					<a>Blog</a>
-				</Link>
-			</nav>
-		</header>
-	);
+        <Link href={`/test`} as={`/test`}>
+          <a>List a Property</a>
+        </Link>
+
+        <Link href={`/test`} as={`/test`}>
+          <a>Blog</a>
+        </Link>
+      </nav>
+
+      <div css={styles.user}>
+        <Button type="button" color="default" size="small">
+          Sign In
+        </Button>
+      </div>
+    </header>
+  );
 };
 
 const styles = {
-	root: css`
-		padding: 40px;
-		display: flex;
-		align-items: center;
-	`,
+  root: css`
+    padding: 40px;
+    display: flex;
+    align-items: center;
+  `,
 
-	logo: css`
-		text-indent: -10000px;
-		background-image: url('/static/assets/logo.png');
-		background-size: contain;
-		background-repeat: no-repeat;
-		width: 190px;
-		height: 35px;
-		display: block;
-		margin-right: 40px;
-		top: -6px;
-		position: relative;
-	`,
+  theme: {
+    main: css`
+      padding: 40px;
+    `,
 
-	nav: css`
-		display: flex;
-		align-items: center;
+    inner: css`
+      padding: 30px 40px;
+    `,
+  },
 
-		> a {
-			margin-right: 30px;
-		}
-	`,
+  user: css`
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  `,
+
+  logo: css`
+    text-indent: -10000px;
+    background-image: url('/static/assets/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 190px;
+    height: 35px;
+    display: block;
+    margin-right: 40px;
+    top: -6px;
+    position: relative;
+  `,
+
+  nav: css`
+    display: flex;
+    align-items: center;
+
+    > a {
+      margin-right: 30px;
+    }
+  `,
 };

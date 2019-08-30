@@ -9,45 +9,45 @@ import { PageHead } from '../../components/Head';
 import { PropertyCard } from '../../components/PropertyCard';
 
 interface IProps {
-	response: IApiResponse<IProperty[]>;
+  response: IApiResponse<IProperty[]>;
 }
 
 const Page: NextPage<IProps> = ({ response }) => (
-	<Wrapper>
-		<PageHead />
-		<Header />
+  <Wrapper>
+    <PageHead />
+    <Header theme="inner" />
 
-		<main css={styles.items}>
-			<div css={styles.itemsContainer}>
-				{response.data &&
-					response.data.map(item => (
-						<PropertyCard key={item.id} property={item} />
-					))}
-			</div>
-		</main>
-	</Wrapper>
+    <main css={styles.items}>
+      <div css={styles.itemsContainer}>
+        {response.data &&
+          response.data.map(item => (
+            <PropertyCard key={item.id} property={item} />
+          ))}
+      </div>
+    </main>
+  </Wrapper>
 );
 
 Page.getInitialProps = async () => {
-	const response = await fetch(`${process.env.API_URL}/property`);
-	return { response: await response.json() };
+  const response = await fetch(`${process.env.API_URL}/property`);
+  return { response: await response.json() };
 };
 
 const styles = {
-	items: css`
-		width: 100%;
-		overflow: auto;
-	`,
+  items: css`
+    width: 100%;
+    overflow: auto;
+  `,
 
-	itemsContainer: css`
-		display: flex;
-		justify-content: space-between;
-		padding: 0 20px;
-	`,
+  itemsContainer: css`
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  `,
 
-	item: css`
-		padding: 45px 20px;
-	`,
+  item: css`
+    padding: 45px 20px;
+  `,
 };
 
 export default Page;

@@ -5,43 +5,43 @@ import { PageHead } from '../components/Head';
 import { Dropdown } from '../ui/module';
 
 interface Props {
-	userAgent: string | undefined;
+  userAgent: string | undefined;
 }
 
 const Page: NextPage<Props> = ({ userAgent }) => (
-	<Wrapper>
-		<PageHead />
-		<Header />
-		<main>
-			Your user agent: {userAgent}
-			<br />
-			<br />
-			{process.env.GOOGLE_MAPS_API_KEY}
-			<Dropdown
-				items={[
-					{
-						value: '1',
-						title: '1',
-						data: '',
-					},
+  <Wrapper>
+    <PageHead />
+    <Header theme="main" />
+    <main>
+      Your user agent: {userAgent}
+      <br />
+      <br />
+      {process.env.GOOGLE_MAPS_API_KEY}
+      <Dropdown
+        items={[
+          {
+            value: '1',
+            title: '1',
+            data: '',
+          },
 
-					{
-						value: '2222111',
-						title: '2222111',
-						data: '',
-					},
-				]}
-				value={'1'}
-				name={'xxx'}
-				onSelect={() => {}}
-			/>
-		</main>
-	</Wrapper>
+          {
+            value: '2222111',
+            title: '2222111',
+            data: '',
+          },
+        ]}
+        value={'1'}
+        name={'xxx'}
+        onSelect={() => {}}
+      />
+    </main>
+  </Wrapper>
 );
 
 Page.getInitialProps = async ({ req }) => {
-	const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-	return { userAgent };
+  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+  return { userAgent };
 };
 
 export default Page;

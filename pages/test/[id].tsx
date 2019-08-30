@@ -6,27 +6,27 @@ import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';
 
 interface IProps {
-	response: IApiResponse<IProperty>;
+  response: IApiResponse<IProperty>;
 }
 
 const Page: NextPage<IProps> = ({ response }) => (
-	<Wrapper>
-		<PageHead title={response.data && response.data.title} />
-		<Header />
-		<main>
-			{response.data && (
-				<div>
-					{response.data.id} {response.data.title}
-				</div>
-			)}
-		</main>
-	</Wrapper>
+  <Wrapper>
+    <PageHead title={response.data && response.data.title} />
+    <Header theme="inner" />
+    <main>
+      {response.data && (
+        <div>
+          {response.data.id} {response.data.title}
+        </div>
+      )}
+    </main>
+  </Wrapper>
 );
 
 Page.getInitialProps = async context => {
-	const { id } = context.query;
-	const response = await fetch(`${process.env.API_URL}/property/${id}`);
-	return { response: await response.json() };
+  const { id } = context.query;
+  const response = await fetch(`${process.env.API_URL}/property/${id}`);
+  return { response: await response.json() };
 };
 
 export default Page;
