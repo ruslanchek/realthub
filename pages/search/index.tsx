@@ -8,7 +8,6 @@ import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';
 import GoogleMapReact from 'google-map-react';
 import { PropertyCard } from '../../components/PropertyCard';
-import { CustomScrollbars } from '../../ui/ui/scrollbars/CustomScrollbars';
 
 const Marker = (props: any) => <div css={styles.marker}>{props.text}</div>;
 
@@ -31,12 +30,12 @@ const Page: NextPage<IProps> = ({ response }) => (
 
     <main css={styles.root}>
       <section css={styles.search}>
-        <CustomScrollbars>
+        <div css={styles.items}>
           {response.data &&
             response.data.map(item => (
               <PropertyCard key={item.id} property={item} />
             ))}
-        </CustomScrollbars>
+        </div>
       </section>
 
       <section css={styles.map}>
@@ -69,6 +68,12 @@ const styles = {
   search: css`
     width: 340px;
     max-width: 340px;
+  `,
+
+  items: css`
+    flex-grow: 1;
+    height: 100%;
+    overflow: auto;
   `,
 
   map: css`

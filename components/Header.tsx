@@ -114,7 +114,7 @@ const styles = {
     main: css`
       > a,
       > a:link {
-        color: rgb(var(--TEXT_ACTIVE));
+        color: rgb(var(--TEXT_ACTIVE)) !important;
 
         &:hover {
           opacity: 0.7;
@@ -125,7 +125,7 @@ const styles = {
     inner: css`
       > a,
       > a:link {
-        color: rgb(var(--BUTTON_TEXT));
+        color: rgb(var(--BUTTON_TEXT)) !important;
 
         &:hover {
           opacity: 0.7;
