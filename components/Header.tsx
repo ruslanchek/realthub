@@ -56,11 +56,13 @@ const styles = {
 
   rootTheme: {
     main: css`
-      padding: 40px;
+      height: 100px;
+      padding: 0 40px;
     `,
 
     inner: css`
-      padding: 15px 40px;
+      padding: 0 20px;
+      height: 65px;
       background: rgb(var(--TEXT_ACTIVE));
     `,
   },

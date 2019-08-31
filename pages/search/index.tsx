@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
+import { useState } from 'react';
 import { NextPage } from 'next';
 import { Wrapper } from '../../components/Wrapper';
 import { Header } from '../../components/Header';
@@ -7,7 +8,7 @@ import fetch from 'isomorphic-unfetch';
 import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';
 import GoogleMapReact from 'google-map-react';
-import { PropertyCard } from '../../components/PropertyCard';
+import { PropertyCard, EViewSize } from '../../components/PropertyCard';
 
 const Marker = (props: any) => <div css={styles.marker}>{props.text}</div>;
 
@@ -15,44 +16,57 @@ interface IProps {
   response: IApiResponse<IProperty[]>;
 }
 
-const MAP_SETTINGS = {
-  center: {
-    lat: 59.95,
-    lng: 30.33,
-  },
-  zoom: 11,
+const DEFAULT_CENTER = {
+  lat: 59.95,
+  lng: 30.33,
 };
 
-const Page: NextPage<IProps> = ({ response }) => (
-  <Wrapper>
-    <PageHead />
-    <Header theme="inner" />
+const DEFAULT_ZOOM = 2;
 
-    <main css={styles.root}>
-      <section css={styles.search}>
-        <div css={styles.items}>
-          {response.data &&
-            response.data.map(item => (
-              <PropertyCard key={item.id} property={item} />
-            ))}
-        </div>
-      </section>
+const Page: NextPage<IProps> = ({ response }) => {
+  const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
+  const [mapZoom] = useState(DEFAULT_ZOOM);
 
-      <section css={styles.map}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY || '' }}
-          defaultCenter={MAP_SETTINGS.center}
-          defaultZoom={MAP_SETTINGS.zoom}
-        >
-          {response.data &&
-            response.data.map((item, index) => (
-              <Marker key={item.id} text={index} {...item.geo} />
-            ))}
-        </GoogleMapReact>
-      </section>
-    </main>
-  </Wrapper>
-);
+  return (
+    <Wrapper>
+      <PageHead />
+      <Header theme="inner" />
+
+      <main css={styles.root}>
+        <section css={styles.search}>
+          <div css={styles.items}>
+            {response.data &&
+              response.data.map(item => (
+                <PropertyCard
+                  onPoint={() => {
+                    setMapCenter(item.geo);
+                  }}
+                  viewSize={EViewSize.Small}
+                  key={item.id}
+                  property={item}
+                />
+              ))}
+          </div>
+        </section>
+
+        <section css={styles.map}>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY || '' }}
+            defaultCenter={DEFAULT_CENTER}
+            defaultZoom={DEFAULT_ZOOM}
+            center={mapCenter}
+            zoom={mapZoom}
+          >
+            {response.data &&
+              response.data.map((item, index) => (
+                <Marker key={item.id} text={index} {...item.geo} />
+              ))}
+          </GoogleMapReact>
+        </section>
+      </main>
+    </Wrapper>
+  );
+};
 
 Page.getInitialProps = async () => {
   const response = await fetch(`${process.env.API_URL}/property`);
@@ -66,8 +80,9 @@ const styles = {
   `,
 
   search: css`
-    width: 340px;
-    max-width: 340px;
+    width: 600px;
+    min-width: 600px;
+    height: calc(100vh - 70px);
   `,
 
   items: css`

@@ -1,102 +1,192 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
+import { useState } from 'react';
 import { IProperty } from '../meta/interfaces';
 import { Love } from './Love';
 
-interface IProps {
-	property: IProperty;
+export enum EViewSize {
+  Large,
+  Small,
 }
 
-export const PropertyCard: React.FC<IProps> = props => {
-	const { property } = props;
-	const image = property.images[0];
+interface IProps {
+  property: IProperty;
+  viewSize: EViewSize;
+  onPoint?: () => void;
+}
 
-	return (
-		<div css={styles.root}>
-			<Love enabled={false} styles={styles.love} />
-			<img src={image.src} width={300} height={200} alt={image.title} />
-			<div css={styles.info}>
-				<div css={styles.price}>${property.price}</div>
-				<div css={styles.title}>{property.title}</div>
-				<footer css={styles.footer}>
-					<div css={styles.address}>{property.address}</div>
-					<div css={styles.params}>
-						{property.params.map(param => (
-							<span key={param.id}>
-								{param.value} {param.type}
-							</span>
-						))}
-					</div>
-				</footer>
-			</div>
-		</div>
-	);
+export const PROPERTY_CARD_IMAGE_SIZES: {
+  [key: number]: { width: number; height: number };
+} = {
+  [EViewSize.Large]: {
+    width: 300,
+    height: 250,
+  },
+
+  [EViewSize.Small]: {
+    width: 250,
+    height: 208,
+  },
+};
+
+export const PropertyCard: React.FC<IProps> = props => {
+  const { property, viewSize: viewSize, onPoint } = props;
+  const image = property.images[0];
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleOnMouseEnter = () => {
+    setIsFocused(true);
+
+    if (onPoint) {
+      onPoint();
+    }
+  };
+
+  const handleOnMouseLeave = () => {
+    setIsFocused(false);
+  };
+
+  return (
+    <div
+      css={[styles.root, styles.rootView[viewSize]]}
+      className={isFocused ? 'focused' : ''}
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
+    >
+      <div className="image">
+        <Love enabled={false} styles={styles.love} />
+        <img
+          src={image.src}
+          width={PROPERTY_CARD_IMAGE_SIZES[viewSize].width}
+          height={PROPERTY_CARD_IMAGE_SIZES[viewSize].height}
+          alt={image.title}
+        />
+      </div>
+      <div className="info">
+        <div className="price">${property.price}</div>
+        <div className="title">{property.title}</div>
+        <footer className="footer">
+          <div className="address">{property.address}</div>
+          <div className="params">
+            {property.params.map(param => (
+              <span key={param.id}>
+                {param.value} {param.type}
+              </span>
+            ))}
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
 };
 
 const styles = {
-	root: css`
-		background-color: white;
-		width: 300px;
-		flex-shrink: 0;
-		margin: 0 20px 45px;
-		border-radius: var(--BORDER_RADIUS_LARGE);
-		position: relative;
-		overflow: hidden;
-		box-shadow: 0px 20px 25px rgba(175, 175, 175, 0.16),
-			0px 10px 10px rgba(0, 0, 0, 0.04);
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-	`,
+  root: css`
+    background-color: white;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    transition: box-shadow 0.2s;
 
-	love: css`
-		position: absolute;
-		top: 10px;
-		right: 10px;
-	`,
+    .image {
+      position: relative;
 
-	info: css`
-		padding: 20px;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		flex-grow: 1;
-	`,
+      > img {
+        display: block;
+      }
+    }
 
-	price: css`
-		font-weight: 700;
-		color: rgb(var(--TEXT_ACTIVE));
-	`,
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex-grow: 1;
+    }
 
-	title: css`
-		font-weight: 700;
-		margin-top: 0.25em;
-	`,
+    .price {
+      font-weight: 700;
+      font-size: var(--FONT_SIZE_BASE);
+      line-height: var(--FONT_SIZE_BASE);
+      color: rgb(var(--TEXT_ACTIVE));
+    }
 
-	address: css`
-		font-size: var(--FONT_SIZE_SMALL);
-		margin-top: 1em;
-		color: rgb(var(--TEXT_FADED));
-	`,
+    .title {
+      font-weight: 700;
+      margin-top: 0.4em;
+    }
 
-	params: css`
-		font-size: var(--FONT_SIZE_SMALL);
-		font-weight: 500;
-		margin-top: 1em;
+    .footer {
+      justify-self: flex-end;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      flex-grow: 1;
+    }
 
-		> span {
-			margin-right: 1ex;
-			background-color: rgba(var(--TEXT), 0.075);
-			border-radius: 4px;
-			padding: 3px 6px;
-		}
-	`,
+    .address {
+      font-size: var(--FONT_SIZE_SMALL);
+      margin-top: 1em;
+      color: rgb(var(--TEXT_FADED));
+    }
 
-	footer: css`
-		justify-self: flex-end;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		flex-grow: 1;
-	`,
+    .params {
+      font-size: var(--FONT_SIZE_SMALL);
+      font-weight: 500;
+      margin-top: 1em;
+
+      > span {
+        margin-right: 1ex;
+        background-color: rgba(var(--TEXT), 0.075);
+        border-radius: 4px;
+        padding: 3px 6px;
+      }
+    }
+  `,
+
+  rootView: {
+    [EViewSize.Large]: css`
+      width: ${PROPERTY_CARD_IMAGE_SIZES[EViewSize.Large].width}px;
+      margin: 0 20px 45px;
+      box-shadow: 0px 20px 25px rgba(175, 175, 175, 0.16),
+        0px 10px 10px rgba(0, 0, 0, 0.04);
+      border-radius: var(--BORDER_RADIUS_LARGE);
+      flex-direction: column;
+
+      &.focused {
+        box-shadow: 0px 20px 25px rgba(175, 175, 175, 0.16),
+          0px 10px 10px rgba(0, 0, 0, 0.04),
+          0 0 0 3px rgba(var(--BUTTON_DEFAULT), 0.33);
+      }
+
+      .info {
+        padding: 20px;
+      }
+    `,
+
+    [EViewSize.Small]: css`
+      margin: 20px;
+      box-shadow: 0px 2px 5px rgba(175, 175, 175, 0.2),
+        0px 10px 10px rgba(0, 0, 0, 0.04);
+      border-radius: var(--BORDER_RADIUS_TINY);
+      flex-direction: row;
+
+      &.focused {
+        box-shadow: 0px 2px 5px rgba(175, 175, 175, 0.2),
+          0px 10px 10px rgba(0, 0, 0, 0.04),
+          0 0 0 3px rgba(var(--BUTTON_DEFAULT), 0.33);
+      }
+
+      .info {
+        padding: 15px;
+      }
+    `,
+  },
+
+  love: css`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  `,
 };

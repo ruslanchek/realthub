@@ -6,7 +6,7 @@ import { Header } from '../../components/Header';
 import fetch from 'isomorphic-unfetch';
 import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';
-import { PropertyCard } from '../../components/PropertyCard';
+import { PropertyCard, EViewSize } from '../../components/PropertyCard';
 
 interface IProps {
   response: IApiResponse<IProperty[]>;
@@ -21,7 +21,11 @@ const Page: NextPage<IProps> = ({ response }) => (
       <div css={styles.itemsContainer}>
         {response.data &&
           response.data.map(item => (
-            <PropertyCard key={item.id} property={item} />
+            <PropertyCard
+              viewSize={EViewSize.Large}
+              key={item.id}
+              property={item}
+            />
           ))}
       </div>
     </main>
