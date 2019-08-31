@@ -19,9 +19,9 @@ const theme: ITheme = {
     FONT_SIZE_LARGE: '25px',
     FONT_SIZE_SMALL: '14px',
 
-    BORDER_RADIUS_LARGE: '15px',
-    BORDER_RADIUS_SMALL: '10px',
-    BORDER_RADIUS_TINY: '5px',
+    BORDER_RADIUS_LARGE: '10px',
+    BORDER_RADIUS_SMALL: '6px',
+    BORDER_RADIUS_TINY: '4px',
   },
 
   COLORS: {

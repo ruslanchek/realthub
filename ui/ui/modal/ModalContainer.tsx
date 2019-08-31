@@ -56,13 +56,12 @@ export class ModalContainer extends React.Component<IProps, IState> {
     modals: new Map<number, IModal>(),
   };
 
-  root: HTMLDivElement | null = document.querySelector(
-    this.props.rootContainerSelector,
-  );
+  root: HTMLDivElement | null = null;
   isMouseDown: boolean = false;
   topModalId: number | null = null;
 
   componentDidMount() {
+    this.root = document.querySelector(this.props.rootContainerSelector);
     document.addEventListener('mousedown', this.handleOutsideClick, false);
     document.addEventListener('keyup', this.handleKeyUp, false);
   }

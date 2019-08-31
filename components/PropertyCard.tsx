@@ -156,8 +156,7 @@ const styles = {
 
       &.focused {
         box-shadow: 0px 20px 25px rgba(175, 175, 175, 0.16),
-          0px 10px 10px rgba(0, 0, 0, 0.04),
-          0 0 0 3px rgba(var(--BUTTON_DEFAULT), 0.33);
+          0px 10px 10px rgba(0, 0, 0, 0.04);
       }
 
       .info {
@@ -168,14 +167,13 @@ const styles = {
     [EViewSize.Small]: css`
       margin: 20px;
       box-shadow: 0px 2px 5px rgba(175, 175, 175, 0.2),
-        0px 10px 10px rgba(0, 0, 0, 0.04);
+        0px 5px 5px rgba(0, 0, 0, 0.04);
       border-radius: var(--BORDER_RADIUS_TINY);
       flex-direction: row;
 
       &.focused {
-        box-shadow: 0px 2px 5px rgba(175, 175, 175, 0.2),
-          0px 10px 10px rgba(0, 0, 0, 0.04),
-          0 0 0 3px rgba(var(--BUTTON_DEFAULT), 0.33);
+        box-shadow: 0px 4px 15px rgba(175, 175, 175, 0.2),
+          0px 10px 10px rgba(0, 0, 0, 0.04);
       }
 
       .info {
