@@ -23,7 +23,9 @@ export const Header: React.FC<IProps> = ({ theme }) => {
 
   return (
     <header css={[styles.root, styles.rootTheme[theme]]}>
-      <ModalContainer rootContainerSelector={CONFIG.MODALS_PORTAL_ROOT}>
+      <ModalContainer
+        rootContainerSelector={`#${CONFIG.MODALS_PORTAL_ROOT_ID}`}
+      >
         {showModal && (
           <Modal
             showOverlay

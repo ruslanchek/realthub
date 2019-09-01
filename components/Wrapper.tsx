@@ -3,6 +3,7 @@ import { jsx, css, Global } from '@emotion/core';
 import React from 'react';
 import { GlobalStyles, themeLight, ITheme } from '../ui/module';
 import Color from 'color';
+import { CONFIG } from '../config';
 
 const theme: ITheme = {
   BREAKPOINTS: {
@@ -39,6 +40,9 @@ export const Wrapper: React.FC = props => {
       <Global styles={styles.global} />
       <GlobalStyles theme={theme} />
       {props.children}
+      <div id={CONFIG.MODALS_PORTAL_ROOT_ID} />
+      <div id={CONFIG.NOTIFICATIONS_PORTAL_ROOT_ID} />
+      <div id={CONFIG.TOOLTIPS_PORTAL_ROOT_ID} />
     </div>
   );
 };

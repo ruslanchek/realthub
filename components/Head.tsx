@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
 import { CONFIG } from '../config';
 
 interface IProps {
@@ -7,24 +6,10 @@ interface IProps {
   description?: string;
 }
 
-function createPortalRoot(id: string) {
-  if (document.querySelectorAll(id).length === 0) {
-    const div = document.createElement('div');
-    div.id = id.replace('#', '');
-    document.body.appendChild(div);
-  }
-}
-
 export const PageHead: React.FC<IProps> = ({
   title = CONFIG.DEFAULT_TITLE,
   description = CONFIG.DEFAULT_DESCRIPTION,
 }) => {
-  useEffect(() => {
-    createPortalRoot(CONFIG.MODALS_PORTAL_ROOT);
-    createPortalRoot(CONFIG.NOTIFICATIONS_PORTAL_ROOT);
-    createPortalRoot(CONFIG.TOOLTIPS_PORTAL_ROOT);
-  });
-
   return (
     <Head>
       <title>{title}</title>
