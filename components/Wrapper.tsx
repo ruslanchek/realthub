@@ -27,10 +27,10 @@ const theme: ITheme = {
 
   COLORS: {
     ...themeLight.COLORS,
-    TEXT_ACTIVE: Color('#4055ec'),
-    TEXT: Color('#243857'),
+    TEXT_ACTIVE: Color('#0065ff'),
+    TEXT: Color('#253858'),
 
-    BUTTON_DEFAULT: Color('#4055ec'),
+    BUTTON_DEFAULT: Color('#0065ff'),
   },
 };
 
