@@ -2,11 +2,9 @@ import ReactGA from 'react-ga';
 
 export const initGA = () => {
   if (!(window as any).GA_INITIALIZED) {
-    initGA();
+    ReactGA.initialize('UA-147616047-1');
     (window as any).GA_INITIALIZED = true;
   }
-
-  ReactGA.initialize('UA-147616047-1');
 };
 
 export const logPageView = () => {
