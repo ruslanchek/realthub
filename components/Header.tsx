@@ -1,91 +1,19 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { useState } from 'react';
 import Link from 'next/link';
 import { PATHS } from '../common/constants';
 import { Button } from '../ui/ui/form/Button';
-import {
-  ModalContainer,
-  Modal,
-  Card,
-  FadedText,
-  Icon,
-  EIconName,
-} from '../ui/module';
-import { CONFIG } from '../config';
+import { AuthModal } from './AuthModal';
+import { authStore } from '../stores/authStore';
 
 interface IProps {
   theme: 'main' | 'inner';
 }
 
 export const Header: React.FC<IProps> = ({ theme }) => {
-  const [showModal, setShowModal] = useState(false);
-
   return (
     <header css={[styles.root, styles.rootTheme[theme]]}>
-      <ModalContainer
-        rootContainerSelector={`#${CONFIG.MODALS_PORTAL_ROOT_ID}`}
-      >
-        {showModal && (
-          <Modal
-            showOverlay
-            closeByOutsideClick
-            closeByEscapeKey
-            onWillOpen={() => {}}
-            onDidOpen={() => {}}
-            onWillClose={() => {}}
-            onDidClose={() => {
-              setShowModal(false);
-            }}
-          >
-            <Card
-              header="Plain modal"
-              footer={
-                <div>
-                  <Button
-                    color="facebook"
-                    onClick={() => {
-                      setShowModal(false);
-                    }}
-                  >
-                    Facebook
-                  </Button>
-                  <Button
-                    color="google"
-                    onClick={() => {
-                      setShowModal(false);
-                    }}
-                  >
-                    Google
-                  </Button>
-                </div>
-              }
-            >
-              <a
-                href="/"
-                onClick={e => {
-                  e.preventDefault();
-                }}
-              >
-                Open nested modal
-              </a>
-
-              <br />
-              <br />
-
-              <FadedText>
-                <Icon
-                  name={EIconName.Info}
-                  width="1em"
-                  height="1em"
-                  color="rgb(var(--TEXT_FADED))"
-                />
-                You can use ESC, Return or click outside to dismiss it
-              </FadedText>
-            </Card>
-          </Modal>
-        )}
-      </ModalContainer>
+      <AuthModal />
 
       <Link href={PATHS.HOME}>
         <a href={PATHS.HOME} css={[styles.logo, styles.logoTheme[theme]]}>
@@ -121,7 +49,9 @@ export const Header: React.FC<IProps> = ({ theme }) => {
           color="white"
           size="small"
           onClick={() => {
-            setShowModal(true);
+            authStore.setState({
+              authModal: true,
+            });
           }}
         >
           Sign In

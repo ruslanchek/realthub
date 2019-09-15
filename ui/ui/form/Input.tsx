@@ -28,23 +28,6 @@ interface IState {
 }
 
 export class Input extends React.Component<IProps, IState> {
-  static defaultProps = {
-    value: '',
-    name: '',
-    placeholder: '',
-    readOnly: false,
-    disabled: false,
-    size: 'large',
-    type: 'text',
-    tabIndex: 1,
-    autoComplete: '',
-    prefix: null,
-    suffix: null,
-    validators: [],
-    pattern: '',
-    onChange: () => {},
-  };
-
   state = {
     currentValue: this.props.value || '',
     showErrors: false,
