@@ -74,11 +74,10 @@ export const useBreakpoint = <T = any>(
   defaultValue: T,
   breakpoints: IBreakpoint<T>[] | undefined,
   throttleTime: number = DEFAULT_THROTTLE_TIME,
-): T => {
+): T | undefined => {
   const screenSize = useScreenSizeChanged(throttleTime);
 
-  return useMemo(
-    () => calculateValue<T>(defaultValue, breakpoints, screenSize.width),
-    [defaultValue, breakpoints, screenSize.width],
-  );
+  return useMemo(() => {
+    return calculateValue<T>(defaultValue, breakpoints, screenSize.width);
+  }, [defaultValue, breakpoints, screenSize.width]);
 };

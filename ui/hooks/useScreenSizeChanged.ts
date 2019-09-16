@@ -10,18 +10,36 @@ interface IScreenSize {
 
 const DEFAULT_THROTTLE_TIME = 50;
 
-const getDeviceOrientation = (): TScreenOrientation => {
-  const { orientation } = window.screen;
+const isSsr = (): boolean => {
+  return typeof window === 'undefined';
+};
 
-  if (orientation && orientation.type) {
-    return orientation.type.includes('landscape') ? 'landscape' : 'portrait';
+const getDeviceOrientation = (): TScreenOrientation | undefined => {
+  if (isSsr()) {
+    return undefined;
   } else {
+    const { orientation } = window.screen;
+
+    if (orientation && orientation.type) {
+      return orientation.type.includes('landscape') ? 'landscape' : 'portrait';
+    }
+
     return undefined;
   }
 };
 
-const getWindowDimensions = () => {
-  return { width: window.innerWidth, height: window.innerWidth };
+const getWindowDimensions = (): {
+  width: number;
+  height: number;
+} => {
+  if (isSsr()) {
+    return {
+      width: 0,
+      height: 0,
+    };
+  } else {
+    return { width: window.innerWidth, height: window.innerWidth };
+  }
 };
 
 export const useScreenSizeChanged = (
@@ -55,13 +73,15 @@ export const useScreenSizeChanged = (
       }
     };
 
-    window.addEventListener('resize', handleResize, false);
-    window.addEventListener('orientationchange', handleResize, false);
+    if (!isSsr()) {
+      window.addEventListener('resize', handleResize, false);
+      window.addEventListener('orientationchange', handleResize, false);
 
-    return () => {
-      window.removeEventListener('resize', handleResize, false);
-      window.removeEventListener('orientationchange', handleResize, false);
-    };
+      return () => {
+        window.removeEventListener('resize', handleResize, false);
+        window.removeEventListener('orientationchange', handleResize, false);
+      };
+    }
   }, [throttleTime]);
 
   return screenSize;
