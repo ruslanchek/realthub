@@ -1,4 +1,15 @@
-import { ModalContainer, Modal, Card, Button, Form, Input } from '../ui/module';
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+import {
+  ModalContainer,
+  Modal,
+  Card,
+  Button,
+  Form,
+  Input,
+  Row,
+} from '../ui/module';
+import { useState } from 'react';
 import { CONFIG } from '../config';
 import { authStore } from '../stores/authStore';
 import { useStore } from 'react-stores';
@@ -7,9 +18,16 @@ import { authRegister, IRegisterFormModel } from '../managers/authManager';
 interface IProps {}
 
 export const AuthModal: React.FC<IProps> = () => {
+  const [formLoading, setFormLoading] = useState(false);
   const authStoreState = useStore(authStore, {
     deps: ['authModal'],
   });
+
+  const submitForm = async (model: IRegisterFormModel) => {
+    setFormLoading(true);
+    await authRegister(model);
+    setFormLoading(false);
+  };
 
   return (
     <ModalContainer rootContainerSelector={`#${CONFIG.MODALS_PORTAL_ROOT_ID}`}>
@@ -28,10 +46,13 @@ export const AuthModal: React.FC<IProps> = () => {
           }}
         >
           <Card>
-            <Form<IRegisterFormModel> onSubmit={authRegister}>
-              <Input name="email" />
-              <Input name="password" />
-              <Button color="default" type="submit">
+            <div css={styles.a}></div>
+            <Form<IRegisterFormModel> onSubmit={submitForm}>
+              <Row>{formLoading && <Input name="email" />}</Row>
+              <Row>
+                <Input name="password" />
+              </Row>
+              <Button color="default" type="submit" loading={formLoading}>
                 Send
               </Button>
             </Form>
@@ -40,4 +61,8 @@ export const AuthModal: React.FC<IProps> = () => {
       )}
     </ModalContainer>
   );
+};
+
+const styles = {
+  a: css``,
 };

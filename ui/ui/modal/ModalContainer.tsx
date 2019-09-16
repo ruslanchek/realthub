@@ -122,6 +122,8 @@ export class ModalContainer extends React.Component<IProps, IState> {
       showOverlay = false;
     }
 
+    console.log('x');
+
     return (
       <ModalContainerContext.Provider
         value={{
@@ -130,12 +132,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
         }}
       >
         {ReactDOM.createPortal(
-          <ModalContainerContext.Provider
-            value={{
-              closeModal: this.closeModal,
-              openModal: this.openModal,
-            }}
-          >
+          <React.Fragment>
             {Array.from(modals.values()).map((modal, i) => {
               return (
                 <ClassNames key={modal.id}>
@@ -219,7 +216,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
                 );
               }}
             </ClassNames>
-          </ModalContainerContext.Provider>,
+          </React.Fragment>,
           this.root,
         )}
         {this.props.children}

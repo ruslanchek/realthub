@@ -71,14 +71,14 @@ export const Button: React.FC<IProps> = props => {
           <Icon
             width="18px"
             height="18px"
-            color={'rgb(var(--TEXT_ACCENT))'}
+            color={'rgb(var(--BUTTON_TEXT))'}
             name={icon}
           />
         </span>
       ) : null}
 
       {loading ? (
-        <ActivityIndicator size="small" color={'rgb(var(--TEXT_ACCENT))'} />
+        <ActivityIndicator size="small" color={'rgb(var(--BUTTON_TEXT))'} />
       ) : (
         children
       )}
