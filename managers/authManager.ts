@@ -8,7 +8,11 @@ export interface IRegisterFormModel {
 }
 
 export const authRegister = async (model: IRegisterFormModel) => {
-  const result = await axios.post(REGISTER_URL, model);
+  try {
+    const response = await axios.post(REGISTER_URL, model);
 
-  console.log(result);
+    console.log(response);
+  } catch (e) {
+    console.log(e.response);
+  }
 };
