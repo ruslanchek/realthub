@@ -53,7 +53,10 @@ export class Modal extends React.Component<IProps> {
         this.props.onDidOpen as () => void,
         this.props.onWillClose as () => void,
         this.props.onWillOpen as () => void,
-        this.props.children,
+        () => {
+          console.log('xxx1');
+          return this.props.children;
+        },
       );
     }
   }

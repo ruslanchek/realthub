@@ -22,7 +22,7 @@ interface IModal {
   onDidOpen: () => void;
   onWillClose: () => void;
   onWillOpen: () => void;
-  component: React.ReactNode;
+  renderModalComponent: () => React.ReactNode;
   show: boolean;
 }
 
@@ -39,7 +39,7 @@ export interface IModalContainerContext {
     onDidOpen: () => void,
     onWillClose: () => void,
     onWillOpen: () => void,
-    component: React.ReactNode,
+    renderModalComponent: () => React.ReactNode,
   ) => number;
   closeModal: (modalId: number) => void;
 }
@@ -122,8 +122,6 @@ export class ModalContainer extends React.Component<IProps, IState> {
       showOverlay = false;
     }
 
-    console.log('x');
-
     return (
       <ModalContainerContext.Provider
         value={{
@@ -181,7 +179,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
                             },
                           ]}
                         >
-                          {modal.component}
+                          {modal.renderModalComponent()}
                         </div>
                       </CSSTransition>
                     );
@@ -247,7 +245,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
     onDidOpen: () => void,
     onWillClose: () => void,
     onWillOpen: () => void,
-    component: React.ReactNode,
+    renderModalComponent: () => React.ReactNode,
   ): number => {
     const { modals } = this.state;
     const id = Date.now();
@@ -262,7 +260,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
       onDidOpen,
       onWillClose,
       onWillOpen,
-      component,
+      renderModalComponent,
       show: false,
     });
 

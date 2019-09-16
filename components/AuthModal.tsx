@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { CONFIG } from '../config';
 import { authStore } from '../stores/authStore';
 import { useStore } from 'react-stores';
-import { authRegister, IRegisterFormModel } from '../managers/authManager';
+import { IRegisterFormModel } from '../managers/authManager';
 
 interface IProps {}
 
@@ -23,10 +23,10 @@ export const AuthModal: React.FC<IProps> = () => {
     deps: ['authModal'],
   });
 
-  const submitForm = async (model: IRegisterFormModel) => {
-    setFormLoading(true);
-    await authRegister(model);
-    setFormLoading(false);
+  const submitForm = async () => {
+    setFormLoading(!formLoading);
+    // await authRegister(model);
+    // setFormLoading(false);
   };
 
   return (
@@ -48,7 +48,9 @@ export const AuthModal: React.FC<IProps> = () => {
           <Card>
             <div css={styles.a}></div>
             <Form<IRegisterFormModel> onSubmit={submitForm}>
-              <Row>{formLoading && <Input name="email" />}</Row>
+              <Row>
+                <Input name="email" />
+              </Row>
               <Row>
                 <Input name="password" />
               </Row>
