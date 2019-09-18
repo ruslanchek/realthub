@@ -27,18 +27,19 @@ const ModalContent = () => {
 
   return (
     <Card>
-      <div css={styles.a}></div>
-      <Form<IRegisterFormModel> onSubmit={submitForm}>
-        <Row>
-          <Input name="email" />
-        </Row>
-        <Row>
-          <Input name="password" />
-        </Row>
-        <Button color="default" type="submit" loading={formLoading}>
-          Send
-        </Button>
-      </Form>
+      <div css={styles.root}>
+        <Form<IRegisterFormModel> onSubmit={submitForm}>
+          <Row>
+            <Input placeholder="Email" name="email" />
+          </Row>
+          <Row>
+            <Input placeholder="Password" name="password" />
+          </Row>
+          <Button color="default" type="submit" loading={formLoading}>
+            Send
+          </Button>
+        </Form>
+      </div>
     </Card>
   );
 };
@@ -72,5 +73,7 @@ export const AuthModal: React.FC<IProps> = () => {
 };
 
 const styles = {
-  a: css``,
+  root: css`
+    min-width: 300px;
+  `,
 };

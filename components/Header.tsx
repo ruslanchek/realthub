@@ -75,7 +75,7 @@ const styles = {
 
     inner: css`
       padding: 0 20px;
-      height: 65px;
+      height: 55px;
       background: rgb(var(--TEXT_ACTIVE));
     `,
   },
