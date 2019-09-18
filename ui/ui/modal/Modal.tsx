@@ -1,10 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import React from 'react';
-import {
-  IModalContainerContext,
-  ModalContainerContext,
-} from './ModalContainer';
+import React, { useContext, useRef, useEffect } from 'react';
+import { ModalContainerContext } from './ModalContainer';
 
 interface IProps {
   index?: 'auto' | number;
@@ -19,59 +14,41 @@ interface IProps {
   onDidOpen?: () => void;
 }
 
-export class Modal extends React.Component<IProps> {
-  static defaultProps: Partial<IProps> = {
-    closeByEscapeKey: false,
-    closeByEnterKey: false,
-    closeByOutsideClick: false,
-    showOverlay: false,
-    onReturnKey: () => {},
-    onWillClose: () => {},
-    onDidClose: () => {},
-    onWillOpen: () => {},
-    onDidOpen: () => {},
-  };
+export const Modal: React.FC<IProps> = props => {
+  const modalContainerContext = useContext(ModalContainerContext);
+  const id = useRef(-1);
 
-  modalContainerContext: IModalContainerContext | null = null;
-  isMouseDown: boolean = false;
-  id: number | null = null;
-
-  componentWillUnmount() {
-    if (this.modalContainerContext && this.id !== null) {
-      this.modalContainerContext.closeModal(this.id);
-    }
-  }
-
-  componentDidMount() {
-    if (this.modalContainerContext) {
-      this.id = this.modalContainerContext.openModal(
-        this.props.showOverlay as boolean,
-        this.props.closeByEscapeKey as boolean,
-        this.props.closeByEnterKey as boolean,
-        this.props.closeByOutsideClick as boolean,
-        this.props.onDidClose as () => void,
-        this.props.onDidOpen as () => void,
-        this.props.onWillClose as () => void,
-        this.props.onWillOpen as () => void,
-        () => {
-          console.log('xxx1');
-          return this.props.children;
-        },
-      );
-    }
-  }
-
-  render() {
-    return (
-      <ModalContainerContext.Consumer>
-        {context => {
-          if (!this.modalContainerContext) {
-            this.modalContainerContext = context;
-          }
-
-          return null;
-        }}
-      </ModalContainerContext.Consumer>
+  useEffect(() => {
+    id.current = modalContainerContext.openModal(
+      props.showOverlay as boolean,
+      props.closeByEscapeKey as boolean,
+      props.closeByEnterKey as boolean,
+      props.closeByOutsideClick as boolean,
+      props.onDidClose as () => void,
+      props.onDidOpen as () => void,
+      props.onWillClose as () => void,
+      props.onWillOpen as () => void,
+      () => props.children,
     );
-  }
-}
+
+    return () => {
+      if (id.current !== null) {
+        modalContainerContext.closeModal(id.current);
+      }
+    };
+  }, []);
+
+  return null;
+};
+
+Modal.defaultProps = {
+  closeByEscapeKey: false,
+  closeByEnterKey: false,
+  closeByOutsideClick: false,
+  showOverlay: false,
+  onReturnKey: () => {},
+  onWillClose: () => {},
+  onDidClose: () => {},
+  onWillOpen: () => {},
+  onDidOpen: () => {},
+};

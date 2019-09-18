@@ -217,6 +217,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
           </React.Fragment>,
           this.root,
         )}
+
         {this.props.children}
       </ModalContainerContext.Provider>
     );

@@ -13,21 +13,40 @@ import { useState } from 'react';
 import { CONFIG } from '../config';
 import { authStore } from '../stores/authStore';
 import { useStore } from 'react-stores';
-import { IRegisterFormModel } from '../managers/authManager';
+import { IRegisterFormModel, authRegister } from '../managers/authManager';
 
 interface IProps {}
 
-export const AuthModal: React.FC<IProps> = () => {
+const ModalContent = () => {
   const [formLoading, setFormLoading] = useState(false);
+  const submitForm = async (model: IRegisterFormModel) => {
+    setFormLoading(true);
+    await authRegister(model);
+    setFormLoading(false);
+  };
+
+  return (
+    <Card>
+      <div css={styles.a}></div>
+      <Form<IRegisterFormModel> onSubmit={submitForm}>
+        <Row>
+          <Input name="email" />
+        </Row>
+        <Row>
+          <Input name="password" />
+        </Row>
+        <Button color="default" type="submit" loading={formLoading}>
+          Send
+        </Button>
+      </Form>
+    </Card>
+  );
+};
+
+export const AuthModal: React.FC<IProps> = () => {
   const authStoreState = useStore(authStore, {
     deps: ['authModal'],
   });
-
-  const submitForm = async () => {
-    setFormLoading(!formLoading);
-    // await authRegister(model);
-    // setFormLoading(false);
-  };
 
   return (
     <ModalContainer rootContainerSelector={`#${CONFIG.MODALS_PORTAL_ROOT_ID}`}>
@@ -45,20 +64,7 @@ export const AuthModal: React.FC<IProps> = () => {
             });
           }}
         >
-          <Card>
-            <div css={styles.a}></div>
-            <Form<IRegisterFormModel> onSubmit={submitForm}>
-              <Row>
-                <Input name="email" />
-              </Row>
-              <Row>
-                <Input name="password" />
-              </Row>
-              <Button color="default" type="submit" loading={formLoading}>
-                Send
-              </Button>
-            </Form>
-          </Card>
+          <ModalContent />
         </Modal>
       )}
     </ModalContainer>
