@@ -44,6 +44,8 @@ export interface ITheme {
   };
 
   COLORS: {
+    WHITE: Color;
+
     BACKGROUND: Color;
     BACKGROUND_DARK: Color;
 
@@ -125,6 +127,8 @@ export const themeDark: ITheme = {
   },
 
   COLORS: {
+    WHITE: Color('#fff'),
+
     BACKGROUND: Color('#232b3e'),
     BACKGROUND_DARK: Color('#1c2233'),
 
@@ -207,6 +211,8 @@ export const themeLight: ITheme = {
   },
 
   COLORS: {
+    WHITE: Color('#fff'),
+
     BACKGROUND: Color('#fff'),
     BACKGROUND_DARK: Color('#eaeff6'),
 

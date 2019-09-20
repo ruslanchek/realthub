@@ -5,12 +5,15 @@ import { PATHS } from '../common/constants';
 import { Button } from '../ui/ui/form/Button';
 import { AuthModal } from './AuthModal';
 import { authStore } from '../stores/authStore';
+import { useStore } from 'react-stores';
 
 interface IProps {
   theme: 'main' | 'inner';
 }
 
 export const Header: React.FC<IProps> = ({ theme }) => {
+  const authStoreState = useStore(authStore);
+
   return (
     <header css={[styles.root, styles.rootTheme[theme]]}>
       <AuthModal />
@@ -44,18 +47,24 @@ export const Header: React.FC<IProps> = ({ theme }) => {
       </nav>
 
       <div css={styles.user}>
-        <Button
-          type="button"
-          color="white"
-          size="small"
-          onClick={() => {
-            authStore.setState({
-              authModal: true,
-            });
-          }}
-        >
-          Sign In
-        </Button>
+        {authStoreState.me ? (
+          <Link href={`/me`} as={`/me`}>
+            <a>{authStoreState.me.email}</a>
+          </Link>
+        ) : (
+          <Button
+            type="button"
+            color="white"
+            size="small"
+            onClick={() => {
+              authStore.setState({
+                authModal: true,
+              });
+            }}
+          >
+            Sign In
+          </Button>
+        )}
       </div>
     </header>
   );

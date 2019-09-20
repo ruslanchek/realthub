@@ -29,7 +29,7 @@
 		"react-dom": "^16.8.6",
 		"react-ga": "^2.6.0",
 		"react-icons": "^3.7.0",
-		"react-stores": "^2.11.5",
+		"react-stores": "^2.12.1",
 		"react-transition-group": "^4.2.2",
 		"react-window": "^1.8.5",
 		"typescript": "^3.5.3"

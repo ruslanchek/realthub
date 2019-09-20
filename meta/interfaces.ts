@@ -28,3 +28,12 @@ export interface IProperty {
     lng: number;
   };
 }
+
+export interface IMe {
+  id: string;
+  email: string;
+}
+
+export interface IAuth {
+  token: string;
+}

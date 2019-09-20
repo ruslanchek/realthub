@@ -13,12 +13,13 @@ interface IProps {
     | 'accent'
     | 'faded'
     | 'danger'
+    | 'white'
     | 'facebook'
-    | 'google'
-    | 'white';
+    | 'google';
   disabled?: boolean;
   loading?: boolean;
   icon?: EIconName | undefined;
+  strokeOnly?: boolean;
   tabIndex?: number;
   onClick?: () => void;
 }
@@ -34,6 +35,7 @@ export const Button: React.FC<IProps> = props => {
     onClick,
     children,
     tabIndex,
+    strokeOnly,
   } = props;
 
   const [isFocusMarked, setFocusMarked] = useState(false);
@@ -49,7 +51,9 @@ export const Button: React.FC<IProps> = props => {
       type={type}
       disabled={disabled || loading}
       tabIndex={tabIndex || 1}
-      className={isFocusMarked ? 'focus' : ''}
+      className={`${isFocusMarked ? 'focus' : ''}${
+        strokeOnly ? ' stroke' : ''
+      }`}
       onKeyUp={() => {
         setFocusMarked(true);
       }}
@@ -159,6 +163,20 @@ const styles = {
             0 0 0 0 rgba(var(--BUTTON_DEFAULT), 0);
         }
       }
+
+      &.stroke {
+        background-color: transparent;
+        border: 1px solid rgb(var(--BUTTON_DEFAULT));
+        color: rgb(var(--BUTTON_DEFAULT));
+
+        &:hover {
+          background-color: rgba(var(--BUTTON_DEFAULT), 0.05);
+        }
+
+        &:active {
+          background-color: rgba(var(--BUTTON_DEFAULT), 0.1);
+        }
+      }
     `,
 
     success: css`
@@ -181,6 +199,20 @@ const styles = {
           background-color: hsl(var(--BUTTON_SUCCESS_HSL_LIGHTEN));
           box-shadow: 0 0 0 3px rgba(var(--BUTTON_SUCCESS), 0.33),
             0 0 0 0 rgba(var(--BUTTON_SUCCESS), 0);
+        }
+      }
+
+      &.stroke {
+        background-color: transparent;
+        border: 1px solid rgb(var(--BUTTON_SUCCESS));
+        color: rgb(var(--BUTTON_SUCCESS));
+
+        &:hover {
+          background-color: rgba(var(--BUTTON_SUCCESS), 0.05);
+        }
+
+        &:active {
+          background-color: rgba(var(--BUTTON_SUCCESS), 0.1);
         }
       }
     `,
@@ -207,6 +239,20 @@ const styles = {
             0 0 0 0 rgba(var(--BUTTON_ACCENT), 0);
         }
       }
+
+      &.stroke {
+        background-color: transparent;
+        border: 1px solid rgb(var(--BUTTON_ACCENT));
+        color: rgb(var(--BUTTON_ACCENT));
+
+        &:hover {
+          background-color: rgba(var(--BUTTON_ACCENT), 0.05);
+        }
+
+        &:active {
+          background-color: rgba(var(--BUTTON_ACCENT), 0.1);
+        }
+      }
     `,
 
     faded: css`
@@ -229,6 +275,20 @@ const styles = {
           background-color: hsl(var(--BUTTON_FADED_HSL_LIGHTEN));
           box-shadow: 0 0 0 3px rgba(var(--BUTTON_FADED), 0.33),
             0 0 0 0 rgba(var(--BUTTON_FADED), 0);
+        }
+      }
+
+      &.stroke {
+        background-color: transparent;
+        border: 1px solid rgb(var(--BUTTON_FADED));
+        color: rgb(var(--BUTTON_FADED));
+
+        &:hover {
+          background-color: rgba(var(--BUTTON_FADED), 0.05);
+        }
+
+        &:active {
+          background-color: rgba(var(--BUTTON_FADED), 0.1);
         }
       }
     `,
@@ -255,6 +315,59 @@ const styles = {
             0 0 0 0 rgba(var(--BUTTON_DANGER), 0);
         }
       }
+
+      &.stroke {
+        background-color: transparent;
+        border: 1px solid hsl(var(--BUTTON_DANGER_HSL_LIGHTEN));
+        color: hsl(var(--BUTTON_DANGER_HSL_LIGHTEN));
+
+        &:hover {
+          background-color: rgba(var(--BUTTON_DANGER), 0.05);
+        }
+
+        &:active {
+          background-color: rgba(var(--BUTTON_DANGER), 0.1);
+        }
+      }
+    `,
+
+    white: css`
+      background-color: rgb(var(--WHITE));
+      color: rgb(var(--TEXT_ACTIVE));
+
+      &:hover {
+        background-color: hsl(var(--WHITE_HSL_DARKEN));
+      }
+
+      &:active {
+        background-color: hsl(var(--WHITE_HSL_LIGHTEN));
+        box-shadow: 0 0 0 0 rgba(var(--WHITE), 0);
+      }
+
+      &.focus {
+        background-color: rgb(var(--WHITE));
+        box-shadow: 0 0 0 3px rgba(var(--WHITE), 0.33);
+
+        &:active {
+          background-color: hsl(var(--WHITE_HSL_LIGHTEN));
+          box-shadow: 0 0 0 3px rgba(var(--WHITE), 0.33),
+            0 0 0 0 rgba(var(--WHITE), 0);
+        }
+      }
+
+      &.stroke {
+        background-color: transparent;
+        border: 1px solid rgb(var(--WHITE));
+        color: rgb(var(--WHITE));
+
+        &:hover {
+          background-color: rgba(var(--WHITE), 0.05);
+        }
+
+        &:active {
+          background-color: rgba(var(--WHITE), 0.1);
+        }
+      }
     `,
 
     facebook: css`
@@ -277,6 +390,20 @@ const styles = {
           background-color: hsl(var(--BUTTON_FACEBOOK_HSL_LIGHTEN));
           box-shadow: 0 0 0 3px rgba(var(--BUTTON_FACEBOOK), 0.33),
             0 0 0 0 rgba(var(--BUTTON_FACEBOOK), 0);
+        }
+      }
+
+      &.stroke {
+        background-color: transparent;
+        border: 1px solid rgb(var(--BUTTON_FACEBOOK));
+        color: rgb(var(--BUTTON_FACEBOOK));
+
+        &:hover {
+          background-color: rgba(var(--BUTTON_FACEBOOK), 0.05);
+        }
+
+        &:active {
+          background-color: rgba(var(--BUTTON_FACEBOOK), 0.1);
         }
       }
     `,
@@ -304,29 +431,18 @@ const styles = {
             0 0 0 0 rgba(var(--BUTTON_GOOGLE), 0);
         }
       }
-    `,
 
-    white: css`
-      background-color: #fff;
-      color: rgb(var(--TEXT_ACTIVE));
+      &.stroke {
+        background-color: transparent;
+        border: 1px solid rgb(var(--BUTTON_GOOGLE));
+        color: rgb(var(--BUTTON_GOOGLE));
 
-      &:hover {
-        background-color: hsl(var(--BUTTON_GOOGLE_HSL_DARKEN));
-      }
-
-      &:active {
-        background-color: hsl(var(--BUTTON_GOOGLE_HSL_LIGHTEN));
-        box-shadow: 0 0 0 0 rgba(var(--BUTTON_GOOGLE), 0);
-      }
-
-      &.focus {
-        background-color: rgb(var(--BUTTON_GOOGLE));
-        box-shadow: 0 0 0 3px rgba(var(--BUTTON_GOOGLE), 0.33);
+        &:hover {
+          background-color: rgba(var(--BUTTON_GOOGLE), 0.05);
+        }
 
         &:active {
-          background-color: hsl(var(--BUTTON_GOOGLE_HSL_LIGHTEN));
-          box-shadow: 0 0 0 3px rgba(var(--BUTTON_GOOGLE), 0.33),
-            0 0 0 0 rgba(var(--BUTTON_GOOGLE), 0);
+          background-color: rgba(var(--BUTTON_GOOGLE), 0.1);
         }
       }
     `,

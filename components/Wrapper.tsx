@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx, css, Global } from '@emotion/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GlobalStyles, themeLight, ITheme } from '../ui/module';
 import Color from 'color';
 import { CONFIG } from '../config';
+import { checkAuth } from '../managers/authManager';
 
 const theme: ITheme = {
   BREAKPOINTS: {
@@ -35,6 +36,10 @@ const theme: ITheme = {
 };
 
 export const Wrapper: React.FC = props => {
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
   return (
     <div css={styles.root}>
       <Global styles={styles.global} />

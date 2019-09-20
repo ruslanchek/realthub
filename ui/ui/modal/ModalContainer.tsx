@@ -100,10 +100,6 @@ export class ModalContainer extends React.Component<IProps, IState> {
   };
 
   render() {
-    if (!this.root) {
-      return null;
-    }
-
     const { modals } = this.state;
     let isAnyModalOpened = false;
     let showOverlay = false;
@@ -129,96 +125,97 @@ export class ModalContainer extends React.Component<IProps, IState> {
           openModal: this.openModal,
         }}
       >
-        {ReactDOM.createPortal(
-          <React.Fragment>
-            {Array.from(modals.values()).map((modal, i) => {
-              return (
-                <ClassNames key={modal.id}>
-                  {({ css }) => {
-                    return (
-                      <CSSTransition
-                        timeout={ANIMATION_TIME}
-                        in={modal.show}
-                        unmountOnExit
-                        onExited={() => {
-                          const { modals } = this.state;
+        <React.Fragment>{this.props.children}</React.Fragment>
 
-                          modals.delete(modal.id);
-
-                          this.setState({
-                            modals,
-                          });
-
-                          modal.onDidClose();
-
-                          if (modals.size > 0) {
-                            this.topModalId = Array.from(modals.values()).sort(
-                              (a, b) => b.id - a.id,
-                            )[0].id;
-                          } else {
-                            this.topModalId = null;
-                          }
-                        }}
-                        onEntered={() => {
-                          modal.onDidOpen();
-                        }}
-                        classNames={{
-                          enter: css(animationsModal.enter),
-                          enterActive: css(animationsModal.enterActive),
-                          exit: css(animationsModal.exit),
-                          exitActive: css(animationsModal.exitActive),
-                        }}
-                      >
-                        <div
-                          onMouseDown={this.mouseDownHandler}
-                          onMouseUp={this.mouseUpHandler}
-                          css={[
-                            styles.modal,
-                            {
-                              zIndex: BASE_Z + 1 + i,
-                            },
-                          ]}
-                        >
-                          {modal.renderModalComponent()}
-                        </div>
-                      </CSSTransition>
-                    );
-                  }}
-                </ClassNames>
-              );
-            })}
-
-            <ClassNames>
-              {({ css }) => {
+        {this.root &&
+          ReactDOM.createPortal(
+            <React.Fragment>
+              {Array.from(modals.values()).map((modal, i) => {
                 return (
-                  <CSSTransition
-                    timeout={ANIMATION_TIME}
-                    in={showOverlay}
-                    unmountOnExit
-                    classNames={{
-                      enter: css(animationsOverlay.enter),
-                      enterActive: css(animationsOverlay.enterActive),
-                      exit: css(animationsOverlay.exit),
-                      exitActive: css(animationsOverlay.exitActive),
-                    }}
-                  >
-                    <div
-                      css={[
-                        styles.overlay,
-                        {
-                          zIndex: BASE_Z,
-                        },
-                      ]}
-                    />
-                  </CSSTransition>
-                );
-              }}
-            </ClassNames>
-          </React.Fragment>,
-          this.root,
-        )}
+                  <ClassNames key={modal.id}>
+                    {({ css }) => {
+                      return (
+                        <CSSTransition
+                          timeout={ANIMATION_TIME}
+                          in={modal.show}
+                          unmountOnExit
+                          onExited={() => {
+                            const { modals } = this.state;
 
-        {this.props.children}
+                            modals.delete(modal.id);
+
+                            this.setState({
+                              modals,
+                            });
+
+                            modal.onDidClose();
+
+                            if (modals.size > 0) {
+                              this.topModalId = Array.from(
+                                modals.values(),
+                              ).sort((a, b) => b.id - a.id)[0].id;
+                            } else {
+                              this.topModalId = null;
+                            }
+                          }}
+                          onEntered={() => {
+                            modal.onDidOpen();
+                          }}
+                          classNames={{
+                            enter: css(animationsModal.enter),
+                            enterActive: css(animationsModal.enterActive),
+                            exit: css(animationsModal.exit),
+                            exitActive: css(animationsModal.exitActive),
+                          }}
+                        >
+                          <div
+                            onMouseDown={this.mouseDownHandler}
+                            onMouseUp={this.mouseUpHandler}
+                            css={[
+                              styles.modal,
+                              {
+                                zIndex: BASE_Z + 1 + i,
+                              },
+                            ]}
+                          >
+                            {modal.renderModalComponent()}
+                          </div>
+                        </CSSTransition>
+                      );
+                    }}
+                  </ClassNames>
+                );
+              })}
+
+              <ClassNames>
+                {({ css }) => {
+                  return (
+                    <CSSTransition
+                      timeout={ANIMATION_TIME}
+                      in={showOverlay}
+                      unmountOnExit
+                      classNames={{
+                        enter: css(animationsOverlay.enter),
+                        enterActive: css(animationsOverlay.enterActive),
+                        exit: css(animationsOverlay.exit),
+                        exitActive: css(animationsOverlay.exitActive),
+                      }}
+                    >
+                      <div
+                        css={[
+                          styles.overlay,
+                          {
+                            zIndex: BASE_Z,
+                          },
+                        ]}
+                      />
+                    </CSSTransition>
+                  );
+                }}
+              </ClassNames>
+            </React.Fragment>,
+            this.root,
+          )}
       </ModalContainerContext.Provider>
     );
   }
@@ -250,7 +247,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
   ): number => {
     const { modals } = this.state;
     const id = Date.now();
-
+    
     modals.set(id, {
       id,
       showOverlay,
