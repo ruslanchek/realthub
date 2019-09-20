@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setCookie, getCookie } from './cookieManager';
 import { authStore } from '../stores/authStore';
-import { IMe, IAuth } from '../meta/interfaces';
+import { IMe, IAuth, IApiResponse } from '../meta/interfaces';
 
 const REGISTER_URL = `${process.env.API_URL}/auth/register`;
 const ME_URL = `${process.env.API_URL}/auth/me`;
@@ -43,13 +43,19 @@ export const checkAuth = async () => {
 
 export const authRegister = async (model: IRegisterFormModel) => {
   try {
-    const { data } = await axios.post<IAuth>(REGISTER_URL, model);
-    setToken(data.token);
-    await getMe();
+    const { data: result } = await axios.post<IApiResponse<IAuth>>(
+      REGISTER_URL,
+      model,
+    );
 
-    authStore.setState({
-      authorized: true,
-    });
+    if (result.data) {
+      setToken(result.data.token);
+      await getMe();
+
+      authStore.setState({
+        authorized: true,
+      });
+    }
   } catch (e) {
     console.log(e.response);
   }
