@@ -46,7 +46,7 @@ export const Header: React.FC<IProps> = ({ theme }) => {
         </Link>
       </nav>
 
-      <div css={styles.user}>
+      <div css={[styles.user, styles.navTheme[theme]]}>
         {authStoreState.me ? (
           <Link href={`/me`} as={`/me`}>
             <a>{authStoreState.me.email}</a>
@@ -94,6 +94,11 @@ const styles = {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    > a,
+    > a:link {
+      white-space: nowrap;
+    }
   `,
 
   logo: css`

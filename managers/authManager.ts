@@ -34,7 +34,9 @@ export const checkAuth = async (): Promise<boolean> => {
 
   if (token) {
     try {
-      await getMe();
+      if (!authStore.state.me) {
+        await getMe();
+      }
       return true;
     } catch (e) {}
   }
