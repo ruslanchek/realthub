@@ -29,7 +29,7 @@ export const getAuthHeaders = (): { Authorization: string } => {
   };
 };
 
-export const checkAuth = async (): Promise<boolean> => {
+export const checkAuth = async () => {
   const token = getToken();
 
   if (token) {
@@ -37,19 +37,15 @@ export const checkAuth = async (): Promise<boolean> => {
       if (!authStore.state.me) {
         await getMe();
       }
-      return true;
     } catch (e) {}
   }
-
-  return false;
 };
 
 export const authRegister = async (model: IRegisterFormModel) => {
   try {
     const { data } = await axios.post<IAuth>(REGISTER_URL, model);
-
     setToken(data.token);
-    getMe();
+    await getMe();
 
     authStore.setState({
       authorized: true,
