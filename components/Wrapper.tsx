@@ -12,10 +12,10 @@ const theme: ITheme = {
 
   CONSTANTS: {
     ...themeLight.CONSTANTS,
-    FONT_FAMILY: "'Noto Sans', sans-serif",
+    FONT_FAMILY: "'Source Sans Pro', sans-serif;",
     GLOBAL_LINE_HEIGHT: '1.3',
 
-    FONT_SIZE_BASE: '14px',
+    FONT_SIZE_BASE: '15px',
     FONT_SIZE_MEDIUM: '19px',
     FONT_SIZE_LARGE: '25px',
     FONT_SIZE_SMALL: '14px',

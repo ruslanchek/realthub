@@ -132,8 +132,6 @@ export class Input extends React.Component<IProps, IState> {
                   prefix && suffix ? styles.inputPrefixSuffix : null,
                 ]}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                  console.log(pattern, event.target.validity.valid);
-
                   if (pattern && !event.target.validity.valid) {
                     return;
                   }

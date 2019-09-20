@@ -28,7 +28,7 @@ export const PageHead: React.FC<IProps> = ({
       <meta name="msapplication-TileColor" content="#2b5797" />
       <meta name="theme-color" content="#ffffff" />
       <link
-        href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap"
         rel="stylesheet"
       />
       <link
