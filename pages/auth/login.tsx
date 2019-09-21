@@ -3,11 +3,11 @@ import { jsx, css } from '@emotion/core';
 import { NextPage } from 'next';
 import { Wrapper } from '../../components/Wrapper';
 import { Header } from '../../components/Header';
+import { IApiResponse, IProperty } from '../../meta/interfaces';
 import { PageHead } from '../../components/Head';
-import { getMe } from '../../managers/authApi';
 
 interface IProps {
-  response: any;
+  response: IApiResponse<IProperty[]>;
 }
 
 const Page: NextPage<IProps> = () => {
@@ -15,17 +15,9 @@ const Page: NextPage<IProps> = () => {
     <Wrapper>
       <PageHead />
       <Header theme="inner" />
-      <main css={styles.root}></main>
+      <main css={styles.root}>Login</main>
     </Wrapper>
   );
-};
-
-Page.getInitialProps = async context => {
-  const me = await getMe(context);
-
-  console.log(me);
-
-  return { response: null };
 };
 
 const styles = {

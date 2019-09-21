@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { CONFIG } from '../config';
 import { authStore } from '../stores/authStore';
 import { useStore } from 'react-stores';
-import { IRegisterFormModel, authRegister } from '../managers/authManager';
+import { IRegisterFormModel, authRegister } from '../managers/authApi';
 
 interface IProps {}
 
