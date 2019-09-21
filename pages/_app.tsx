@@ -1,35 +1,25 @@
 import React from 'react';
 import App from 'next/app';
-import { IMe, getMe } from '../apis/authApi';
-import { AuthContext } from '../contexts/AuthContext';
+import { authStore } from '../stores/authStore';
+import { commonStore } from '../stores/commonStore';
+import { getMe } from '../apis/authApi';
 
-interface IProps {
-  me: IMe | undefined;
-}
-
-class MyApp extends App<IProps> {
-  static async getInitialProps({ Component, ctx }: any) {
-    let pageProps = {};
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
+class MyApp extends App {
+  async componentDidMount() {
+    if (!authStore.state.me) {
+      authStore.setState({
+        me: await getMe(),
+      });
     }
 
-    return { pageProps, me: await getMe(ctx) };
+    commonStore.setState({
+      ready: true,
+    });
   }
 
   render() {
-    const { Component, pageProps, me } = this.props;
-
-    return (
-      <AuthContext.Provider
-        value={{
-          me,
-        }}
-      >
-        <Component {...pageProps} />
-      </AuthContext.Provider>
-    );
+    const { Component, pageProps } = this.props;
+    return <Component {...pageProps} />;
   }
 }
 
