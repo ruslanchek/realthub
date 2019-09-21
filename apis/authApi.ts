@@ -3,6 +3,7 @@ import { IApiResponse } from '../common/interfaces';
 import { parseCookies, setCookie } from 'nookies';
 import { NextPageContext } from 'next';
 import { API_URLS } from '../common/constants';
+import { authStore } from '../stores/authStore';
 
 export interface IRegisterFormModel {
   email: string;
@@ -42,6 +43,7 @@ export const authRegister = async (
 
   if (data.data) {
     setToken(data.data.token);
+    await getMe();
 
     return data.data;
   } else {
@@ -49,9 +51,7 @@ export const authRegister = async (
   }
 };
 
-export const getMe = async (
-  context?: NextPageContext,
-): Promise<IMe | undefined> => {
+export const getMe = async (context?: NextPageContext) => {
   const token = getToken(context);
 
   if (token) {
@@ -59,8 +59,12 @@ export const getMe = async (
       headers: getAuthHeaders(token),
     });
 
-    return data.data;
+    authStore.setState({
+      me: data.data,
+    });
+  } else {
+    authStore.setState({
+      me: undefined,
+    });
   }
-
-  return undefined;
 };

@@ -7,9 +7,7 @@ import { getMe } from '../apis/authApi';
 class MyApp extends App {
   async componentDidMount() {
     if (!authStore.state.me) {
-      authStore.setState({
-        me: await getMe(),
-      });
+      await getMe();
     }
 
     commonStore.setState({

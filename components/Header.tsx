@@ -43,20 +43,25 @@ export const Header: React.FC<IProps> = ({ theme }) => {
         <Link href={`/test`} as={`/test`}>
           <a>List a Property</a>
         </Link>
-
-        <Link href={`/me`} as={`/me`}>
-          <a>Me</a>
-        </Link>
       </nav>
 
       {commonStoreState.ready && (
         <div css={[styles.user, styles.navTheme[theme]]}>
           {authStoreState.me ? (
-            <Link href={`/me`} as={`/me`}>
+            <Link href={PATHS.ME} as={PATHS.ME}>
               <a>{authStoreState.me.email}</a>
             </Link>
           ) : (
-            <Button type="button" color="white" size="small" onClick={() => {}}>
+            <Button
+              type="button"
+              color="white"
+              size="small"
+              onClick={() => {
+                authStore.setState({
+                  authModal: true,
+                });
+              }}
+            >
               Sign In
             </Button>
           )}

@@ -1,5 +1,6 @@
 export const PATHS = {
   HOME: '/',
+  ME: '/me',
 };
 
 export const API_URLS = {
