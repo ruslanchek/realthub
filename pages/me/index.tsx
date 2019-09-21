@@ -4,13 +4,8 @@ import { NextPage } from 'next';
 import { Wrapper } from '../../components/Wrapper';
 import { Header } from '../../components/Header';
 import { PageHead } from '../../components/Head';
-import { getMe } from '../../managers/authApi';
 
-interface IProps {
-  response: any;
-}
-
-const Page: NextPage<IProps> = () => {
+const Page: NextPage = () => {
   return (
     <Wrapper>
       <PageHead />
@@ -18,14 +13,6 @@ const Page: NextPage<IProps> = () => {
       <main css={styles.root}></main>
     </Wrapper>
   );
-};
-
-Page.getInitialProps = async context => {
-  const me = await getMe(context);
-
-  console.log(me);
-
-  return { response: null };
 };
 
 const styles = {

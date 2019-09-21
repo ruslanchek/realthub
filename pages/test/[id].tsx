@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { Wrapper } from '../../components/Wrapper';
 import { Header } from '../../components/Header';
 import fetch from 'isomorphic-unfetch';
-import { IApiResponse, IProperty } from '../../meta/interfaces';
+import { IApiResponse, IProperty } from '../../common/interfaces';
 import { PageHead } from '../../components/Head';
 
 interface IProps {
@@ -23,8 +23,8 @@ const Page: NextPage<IProps> = ({ response }) => (
   </Wrapper>
 );
 
-Page.getInitialProps = async context => {
-  const { id } = context.query;
+Page.getInitialProps = async ctx => {
+  const { id } = ctx.query;
   const response = await fetch(`${process.env.API_URL}/property/${id}`);
   return { response: await response.json() };
 };

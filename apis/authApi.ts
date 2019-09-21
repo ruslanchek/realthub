@@ -1,10 +1,22 @@
-import fetch from 'isomorphic-unfetch';
-import { IMe, IAuth, IApiResponse } from '../meta/interfaces';
+import axios from 'axios';
+import { IApiResponse } from '../common/interfaces';
 import { parseCookies, setCookie } from 'nookies';
 import { NextPageContext } from 'next';
+import { API_URLS } from '../common/constants';
 
-export const REGISTER_URL = `${process.env.API_URL}/auth/register`;
-export const ME_URL = `${process.env.API_URL}/auth/me`;
+export interface IRegisterFormModel {
+  email: string;
+  password: string;
+}
+
+export interface IMe {
+  id: string;
+  email: string;
+}
+
+export interface IAuth {
+  token: string;
+}
 
 const setToken = (token: string) => {
   setCookie(undefined, 'token', token, {});
@@ -14,11 +26,6 @@ const getToken = (context?: NextPageContext): string | undefined => {
   return parseCookies(context).token;
 };
 
-export interface IRegisterFormModel {
-  email: string;
-  password: string;
-}
-
 export const getAuthHeaders = (token: string): { Authorization: string } => {
   return {
     Authorization: `Bearer ${token}`,
@@ -27,17 +34,16 @@ export const getAuthHeaders = (token: string): { Authorization: string } => {
 
 export const authRegister = async (
   model: IRegisterFormModel,
-): Promise<IApiResponse<IAuth> | undefined> => {
-  const result = await fetch(REGISTER_URL, {
-    method: 'POST',
-    body: JSON.stringify(model),
-  });
-  const response = await result.json();
+): Promise<IAuth | undefined> => {
+  const { data } = await axios.post<IApiResponse<IAuth>>(
+    API_URLS.AUTH_REGISTER,
+    model,
+  );
 
-  if (response.data) {
-    setToken(response.data.token);
+  if (data.data) {
+    setToken(data.data.token);
 
-    return response.data;
+    return data.data;
   } else {
     return undefined;
   }
@@ -49,11 +55,11 @@ export const getMe = async (
   const token = getToken(context);
 
   if (token) {
-    const response = await fetch(ME_URL, {
+    const { data } = await axios.get<IApiResponse<IMe>>(API_URLS.AUTH_ME, {
       headers: getAuthHeaders(token),
     });
 
-    return await response.json();
+    return data.data;
   }
 
   return undefined;

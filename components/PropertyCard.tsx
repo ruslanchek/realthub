@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import { useState } from 'react';
-import { IProperty } from '../meta/interfaces';
+import { IProperty } from '../common/interfaces';
 import { Love } from './Love';
 
 export enum EViewSize {

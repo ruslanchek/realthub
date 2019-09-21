@@ -1,18 +1,18 @@
 /** @jsx jsx */
+import React, { useContext } from 'react';
 import { jsx, css } from '@emotion/core';
 import Link from 'next/link';
 import { PATHS } from '../common/constants';
 import { Button } from '../ui/ui/form/Button';
 import { AuthModal } from './AuthModal';
-import { authStore } from '../stores/authStore';
-import { useStore } from 'react-stores';
+import { AuthContext } from '../contexts/AuthContext';
 
 interface IProps {
   theme: 'main' | 'inner';
 }
 
 export const Header: React.FC<IProps> = ({ theme }) => {
-  const authStoreState = useStore(authStore);
+  const authContext = useContext(AuthContext);
 
   return (
     <header css={[styles.root, styles.rootTheme[theme]]}>
@@ -41,27 +41,18 @@ export const Header: React.FC<IProps> = ({ theme }) => {
           <a>List a Property</a>
         </Link>
 
-        <Link href={`/test`} as={`/test`}>
-          <a>Blog</a>
+        <Link href={`/me`} as={`/me`}>
+          <a>Me</a>
         </Link>
       </nav>
 
       <div css={[styles.user, styles.navTheme[theme]]}>
-        {authStoreState.me ? (
+        {authContext.me ? (
           <Link href={`/me`} as={`/me`}>
-            <a>{authStoreState.me.email}</a>
+            <a>{authContext.me.email}</a>
           </Link>
         ) : (
-          <Button
-            type="button"
-            color="white"
-            size="small"
-            onClick={() => {
-              authStore.setState({
-                authModal: true,
-              });
-            }}
-          >
+          <Button type="button" color="white" size="small" onClick={() => {}}>
             Sign In
           </Button>
         )}

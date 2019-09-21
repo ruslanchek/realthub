@@ -5,7 +5,7 @@ import { NextPage } from 'next';
 import { Wrapper } from '../../components/Wrapper';
 import { Header } from '../../components/Header';
 import fetch from 'isomorphic-unfetch';
-import { IApiResponse, IProperty } from '../../meta/interfaces';
+import { IApiResponse, IProperty } from '../../common/interfaces';
 import { PageHead } from '../../components/Head';
 import GoogleMapReact from 'google-map-react';
 import { PropertyCard, EViewSize } from '../../components/PropertyCard';

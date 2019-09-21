@@ -11,9 +11,7 @@ import {
 } from '../ui/module';
 import { useState } from 'react';
 import { CONFIG } from '../config';
-import { authStore } from '../stores/authStore';
-import { useStore } from 'react-stores';
-import { IRegisterFormModel, authRegister } from '../managers/authApi';
+import { IRegisterFormModel, authRegister } from '../apis/authApi';
 
 interface IProps {}
 
@@ -45,13 +43,9 @@ const ModalContent = () => {
 };
 
 export const AuthModal: React.FC<IProps> = () => {
-  const authStoreState = useStore(authStore, {
-    deps: ['authModal'],
-  });
-
   return (
     <ModalContainer rootContainerSelector={`#${CONFIG.MODALS_PORTAL_ROOT_ID}`}>
-      {authStoreState.authModal && (
+      {false && (
         <Modal
           showOverlay
           closeByOutsideClick
@@ -59,11 +53,7 @@ export const AuthModal: React.FC<IProps> = () => {
           onWillOpen={() => {}}
           onDidOpen={() => {}}
           onWillClose={() => {}}
-          onDidClose={() => {
-            authStore.setState({
-              authModal: false,
-            });
-          }}
+          onDidClose={() => {}}
         >
           <ModalContent />
         </Modal>

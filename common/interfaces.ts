@@ -1,3 +1,5 @@
+import { IMe } from '../apis/authApi';
+
 export interface IApiResponse<T = any> {
   data?: T;
   error?: string;
@@ -29,11 +31,7 @@ export interface IProperty {
   };
 }
 
-export interface IMe {
-  id: string;
-  email: string;
-}
-
-export interface IAuth {
-  token: string;
+export interface IPageProps {
+  authirized: boolean;
+  me: IMe;
 }

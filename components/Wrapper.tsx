@@ -4,7 +4,6 @@ import React from 'react';
 import { GlobalStyles, themeLight, ITheme } from '../ui/module';
 import Color from 'color';
 import { CONFIG } from '../config';
-import { getMe } from '../managers/authApi';
 
 const theme: ITheme = {
   BREAKPOINTS: {

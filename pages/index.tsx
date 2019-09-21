@@ -39,8 +39,10 @@ const Page: NextPage<Props> = ({ userAgent }) => (
   </Wrapper>
 );
 
-Page.getInitialProps = async ({ req }) => {
-  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+Page.getInitialProps = async ctx => {
+  const userAgent = ctx.req
+    ? ctx.req.headers['user-agent']
+    : navigator.userAgent;
   return { userAgent };
 };
 

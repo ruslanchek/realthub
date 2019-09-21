@@ -3,7 +3,7 @@ import { jsx, css } from '@emotion/core';
 import { NextPage } from 'next';
 import { Wrapper } from '../../components/Wrapper';
 import { Header } from '../../components/Header';
-import { IApiResponse, IProperty } from '../../meta/interfaces';
+import { IApiResponse, IProperty } from '../../common/interfaces';
 import { PageHead } from '../../components/Head';
 
 interface IProps {
