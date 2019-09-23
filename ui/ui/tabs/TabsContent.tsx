@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React from 'react';
+import React, { useContext } from 'react';
 import { TabsContext } from './Tabs';
 
 interface ITabContent {
@@ -11,22 +11,15 @@ interface IProps {
   content: ITabContent[];
 }
 
-export class TabsContent extends React.Component<IProps, {}> {
-  render() {
-    const { content } = this.props;
+export const TabsContent: React.FC<IProps> = props => {
+  const { content } = props;
+  const { currentIndex } = useContext(TabsContext);
 
-    return (
-      <TabsContext.Consumer>
-        {({ currentIndex }) => {
-          return (
-            <React.Fragment>
-              {content && content[currentIndex]
-                ? content[currentIndex].component
-                : null}
-            </React.Fragment>
-          );
-        }}
-      </TabsContext.Consumer>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      {content && content[currentIndex]
+        ? content[currentIndex].component
+        : null}
+    </React.Fragment>
+  );
+};

@@ -1,46 +1,38 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import {
-  ModalContainer,
-  Modal,
-  Card,
-  Button,
-  Form,
-  Input,
-  Row,
-} from '../ui/module';
-import { useState } from 'react';
+import { jsx } from '@emotion/core';
+import { ModalContainer, Modal, Tabs, TabsContent } from '../ui/module';
 import { CONFIG } from '../config';
-import { IRegisterFormModel, authRegister } from '../apis/authApi';
+import { Register } from './Register';
+import { Login } from './Login';
 import { authStore } from '../stores/authStore';
 import { useStore } from 'react-stores';
 
 interface IProps {}
 
 const ModalContent = () => {
-  const [formLoading, setFormLoading] = useState(false);
-  const submitForm = async (model: IRegisterFormModel) => {
-    setFormLoading(true);
-    await authRegister(model);
-    setFormLoading(false);
-  };
-
   return (
-    <Card>
-      <div css={styles.root}>
-        <Form<IRegisterFormModel> onSubmit={submitForm}>
-          <Row>
-            <Input placeholder="Email" name="email" />
-          </Row>
-          <Row>
-            <Input placeholder="Password" name="password" />
-          </Row>
-          <Button color="default" type="submit" loading={formLoading}>
-            Send
-          </Button>
-        </Form>
-      </div>
-    </Card>
+    <Tabs
+      tabs={[
+        {
+          title: 'Register',
+        },
+        {
+          title: 'Login',
+        },
+      ]}
+    >
+      <Register />
+      <TabsContent
+        content={[
+          {
+            component: <Register />,
+          },
+          {
+            component: <Login />,
+          },
+        ]}
+      />
+    </Tabs>
   );
 };
 
@@ -68,10 +60,4 @@ export const AuthModal: React.FC<IProps> = () => {
       )}
     </ModalContainer>
   );
-};
-
-const styles = {
-  root: css`
-    min-width: 300px;
-  `,
 };
