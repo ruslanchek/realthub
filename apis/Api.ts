@@ -1,6 +1,6 @@
 import axios, { Method } from 'axios';
 import { NextPageContext } from 'next';
-import { parseCookies } from 'nookies';
+import { parseCookies, destroyCookie } from 'nookies';
 
 interface IApiFieldError<TInputModel> {
   property: keyof TInputModel;
@@ -19,13 +19,13 @@ interface IApiResult<TInputModel, TOutputModel> {
 }
 
 export abstract class Api {
-  private static getToken(context?: NextPageContext): string | undefined {
-    return parseCookies(context).token;
+  private static getToken(ctx?: NextPageContext): string | undefined {
+    return parseCookies(ctx).token;
   }
 
-  private static getAuthHeaders(context?: NextPageContext): IApiAuthHeaders {
+  private static getAuthHeaders(ctx?: NextPageContext): IApiAuthHeaders {
     return {
-      Authorization: `Bearer ${this.getToken(context)}`,
+      Authorization: `Bearer ${this.getToken(ctx)}`,
     };
   }
 
@@ -33,7 +33,7 @@ export abstract class Api {
     url: string,
     method: Method,
     data?: TInputModel,
-    context?: NextPageContext,
+    ctx?: NextPageContext,
     needAuth?: boolean,
   ): Promise<IApiResult<TInputModel, TOutputModel>> {
     try {
@@ -49,7 +49,7 @@ export abstract class Api {
 
         headers = {
           ...headers,
-          ...this.getAuthHeaders(context),
+          ...this.getAuthHeaders(ctx),
         };
       }
 
@@ -66,11 +66,19 @@ export abstract class Api {
       };
     } catch (e) {
       const result = e.response;
+      const generalError = this.parseGeneralError(result.data.message);
+      const fieldsErrors = this.parseFieldsErrors<TInputModel>(
+        result.data.message,
+      );
+
+      if (generalError === 'INVALID_TOKEN' || generalError === 'INVALID_USER') {
+        destroyCookie(ctx, 'token');
+      }
 
       return {
         error: true,
-        fieldsErrors: this.parseFieldsErrors<TInputModel>(result.data.message),
-        generalError: this.parseGeneralError(result.data.message),
+        fieldsErrors,
+        generalError,
       };
     }
   }
