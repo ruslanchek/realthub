@@ -1,32 +1,36 @@
 import { NextPage } from 'next';
-import { Wrapper } from '../../components/Wrapper';
+import { PageWrapper } from '../../components/PageWrapper';
 import { Header } from '../../components/Header';
-import fetch from 'isomorphic-unfetch';
-import { IApiResponse, IProperty } from '../../common/interfaces';
-import { PageHead } from '../../components/Head';
+import { PageHead } from '../../components/PageHead';
+import { ApiProperty, IApiPropertyItem } from '../../apis/ApiProperty';
+import { Error404 } from '../../components/404';
 
 interface IProps {
-  response: IApiResponse<IProperty>;
+  property?: IApiPropertyItem;
 }
 
-const Page: NextPage<IProps> = ({ response }) => (
-  <Wrapper>
-    <PageHead title={response.data && response.data.title} />
-    <Header theme="inner" />
-    <main>
-      {response.data && (
+const Page: NextPage<IProps> = ({ property }) => {
+  if (!property) {
+    return <Error404 />;
+  }
+
+  return (
+    <PageWrapper>
+      <PageHead title={property.title} />
+      <Header theme="inner" />
+      <main>
         <div>
-          {response.data.id} {response.data.title}
+          {property.id} {property.title}
         </div>
-      )}
-    </main>
-  </Wrapper>
-);
+      </main>
+    </PageWrapper>
+  );
+};
 
 Page.getInitialProps = async ctx => {
   const { id } = ctx.query;
-  const response = await fetch(`${process.env.API_URL}/property/${id}`);
-  return { response: await response.json() };
+  const result = await ApiProperty.getPropertyItem(id.toString(), ctx);
+  return { property: result.data };
 };
 
 export default Page;

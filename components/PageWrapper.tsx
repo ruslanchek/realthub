@@ -3,7 +3,7 @@ import { jsx, css, Global } from '@emotion/core';
 import React from 'react';
 import { GlobalStyles, themeLight, ITheme } from '../ui/module';
 import Color from 'color';
-import { CONFIG } from '../config';
+import { CONFIG } from '../common/config';
 
 const theme: ITheme = {
   BREAKPOINTS: {
@@ -34,7 +34,7 @@ const theme: ITheme = {
   },
 };
 
-export const Wrapper: React.FC = props => {
+export const PageWrapper: React.FC = props => {
   return (
     <div css={styles.root}>
       <Global styles={styles.global} />

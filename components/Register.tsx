@@ -2,13 +2,13 @@
 import { jsx, css } from '@emotion/core';
 import { Card, Button, Form, Input, Row } from '../ui/module';
 import { useState } from 'react';
-import { IRegisterFormModel, authRegister } from '../apis/authApi';
+import { ApiAuth, IApiAuthRegisterModel } from '../apis/ApiAuth';
 
 export const Register = () => {
   const [formLoading, setFormLoading] = useState(false);
-  const submitForm = async (model: IRegisterFormModel) => {
+  const submitForm = async (model: IApiAuthRegisterModel) => {
     setFormLoading(true);
-    await authRegister(model);
+    await ApiAuth.register(model);
     setFormLoading(false);
   };
 
@@ -16,7 +16,7 @@ export const Register = () => {
     <Card>
       Register
       <div css={styles.root}>
-        <Form<IRegisterFormModel> onSubmit={submitForm}>
+        <Form<IApiAuthRegisterModel> onSubmit={submitForm}>
           <Row>
             <Input placeholder="Email" name="email" />
           </Row>

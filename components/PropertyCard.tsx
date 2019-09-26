@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import { useState } from 'react';
-import { IProperty } from '../common/interfaces';
 import { Love } from './Love';
+import { IApiPropertyItem } from '../apis/ApiProperty';
 
 export enum EViewSize {
   Large,
@@ -10,7 +10,7 @@ export enum EViewSize {
 }
 
 interface IProps {
-  property: IProperty;
+  property: IApiPropertyItem;
   viewSize: EViewSize;
   onPoint?: () => void;
 }

@@ -1,8 +1,8 @@
 import { Store } from 'react-stores';
-import { IMe } from '../apis/authApi';
+import { IApiAuthMe } from '../apis/ApiAuth';
 
 interface IStoreState {
-  me: IMe | undefined;
+  me: IApiAuthMe | undefined;
   authModal: boolean;
 }
 

@@ -1,22 +1,19 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import { NextPage } from 'next';
-import { Wrapper } from '../../components/Wrapper';
+import { PageWrapper } from '../../components/PageWrapper';
 import { Header } from '../../components/Header';
-import { IApiResponse, IProperty } from '../../common/interfaces';
-import { PageHead } from '../../components/Head';
+import { PageHead } from '../../components/PageHead';
 
-interface IProps {
-  response: IApiResponse<IProperty[]>;
-}
+interface IProps {}
 
 const Page: NextPage<IProps> = () => {
   return (
-    <Wrapper>
+    <PageWrapper>
       <PageHead />
       <Header theme="inner" />
       <main css={styles.root}>Register</main>
-    </Wrapper>
+    </PageWrapper>
   );
 };
 

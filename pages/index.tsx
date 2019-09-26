@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
-import { Wrapper } from '../components/Wrapper';
+import { PageWrapper } from '../components/PageWrapper';
 import { Header } from '../components/Header';
-import { PageHead } from '../components/Head';
+import { PageHead } from '../components/PageHead';
 import { Dropdown } from '../ui/module';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Page: NextPage<Props> = ({ userAgent }) => (
-  <Wrapper>
+  <PageWrapper>
     <PageHead />
     <Header theme="main" />
     <main>
@@ -36,7 +36,7 @@ const Page: NextPage<Props> = ({ userAgent }) => (
         onSelect={() => {}}
       />
     </main>
-  </Wrapper>
+  </PageWrapper>
 );
 
 Page.getInitialProps = async ctx => {

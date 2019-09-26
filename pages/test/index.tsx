@@ -1,40 +1,38 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import { NextPage } from 'next';
-import { Wrapper } from '../../components/Wrapper';
+import { PageWrapper } from '../../components/PageWrapper';
 import { Header } from '../../components/Header';
-import fetch from 'isomorphic-unfetch';
-import { IApiResponse, IProperty } from '../../common/interfaces';
-import { PageHead } from '../../components/Head';
+import { PageHead } from '../../components/PageHead';
 import { PropertyCard, EViewSize } from '../../components/PropertyCard';
+import { ApiProperty, IApiPropertyItem } from '../../apis/ApiProperty';
 
 interface IProps {
-  response: IApiResponse<IProperty[]>;
+  properties: IApiPropertyItem[];
 }
 
-const Page: NextPage<IProps> = ({ response }) => (
-  <Wrapper>
+const Page: NextPage<IProps> = ({ properties }) => (
+  <PageWrapper>
     <PageHead />
     <Header theme="inner" />
 
     <main css={styles.items}>
       <div css={styles.itemsContainer}>
-        {response.data &&
-          response.data.map(item => (
-            <PropertyCard
-              viewSize={EViewSize.Large}
-              key={item.id}
-              property={item}
-            />
-          ))}
+        {properties.map(item => (
+          <PropertyCard
+            viewSize={EViewSize.Large}
+            key={item.id}
+            property={item}
+          />
+        ))}
       </div>
     </main>
-  </Wrapper>
+  </PageWrapper>
 );
 
-Page.getInitialProps = async () => {
-  const response = await fetch(`${process.env.API_URL}/property`);
-  return { response: await response.json() };
+Page.getInitialProps = async ctx => {
+  const result = await ApiProperty.getPropertyList(ctx);
+  return { properties: result.data || [] };
 };
 
 const styles = {
