@@ -43,6 +43,10 @@ export const Header: React.FC<IProps> = ({ theme }) => {
         <Link href={`/test`} as={`/test`}>
           <a>List a Property</a>
         </Link>
+
+        <Link href={`/me`} as={`/me`}>
+          <a>Me</a>
+        </Link>
       </nav>
 
       {commonStoreState.ready && (

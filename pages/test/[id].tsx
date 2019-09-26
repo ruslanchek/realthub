@@ -4,6 +4,7 @@ import { Header } from '../../components/Header';
 import { PageHead } from '../../components/PageHead';
 import { ApiProperty, IApiPropertyItem } from '../../apis/ApiProperty';
 import { ErrorPage } from '../../components/ErrorPage';
+import { ApiAuth } from '../../apis/ApiAuth';
 
 interface IProps {
   property?: IApiPropertyItem;
@@ -30,6 +31,11 @@ const Page: NextPage<IProps> = ({ property }) => {
 Page.getInitialProps = async ctx => {
   const { id } = ctx.query;
   const result = await ApiProperty.getPropertyItem(id.toString(), ctx);
+
+  if (!result.data) {
+    ApiAuth.notFound(ctx);
+  }
+
   return { property: result.data };
 };
 

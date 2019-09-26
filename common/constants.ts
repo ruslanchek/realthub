@@ -1,6 +1,8 @@
 export const PATHS = {
   HOME: '/',
   ME: '/me',
+  AUTH_LOGIN: '/auth/login',
+  AUTH_REGISTER: '/auth/register',
 };
 
 export const API_URLS = {

@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import { NextPage } from 'next';
 import { PageWrapper } from '../../components/PageWrapper';
 import { Header } from '../../components/Header';
 import { PageHead } from '../../components/PageHead';
+import { Login } from '../../components/Login';
 
 interface IProps {}
 
@@ -12,16 +13,11 @@ const Page: NextPage<IProps> = () => {
     <PageWrapper>
       <PageHead />
       <Header theme="inner" />
-      <main css={styles.root}>Login</main>
+      <main>
+        <Login />
+      </main>
     </PageWrapper>
   );
-};
-
-const styles = {
-  root: css`
-    flex-grow: 1;
-    display: flex;
-  `,
 };
 
 export default Page;

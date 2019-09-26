@@ -1,7 +1,8 @@
+import Router from 'next/router';
 import { Api } from './Api';
-import { API_URLS } from '../common/constants';
-import { setCookie } from 'nookies';
+import { API_URLS, PATHS } from '../common/constants';
 import { authStore } from '../stores/authStore';
+import { NextPageContext } from 'next';
 
 export interface IApiAuthRegisterModel {
   email: string;
@@ -23,6 +24,23 @@ export interface IApiAuthToken {
 }
 
 export class ApiAuth extends Api {
+  public static redirectToAuth(ctx?: NextPageContext) {
+    if (process.browser) {
+      Router.push(PATHS.AUTH_LOGIN);
+    } else {
+      if (ctx && ctx.res) {
+        ctx.res.writeHead(301, { Location: PATHS.AUTH_LOGIN });
+        ctx.res.end();
+      }
+    }
+  }
+
+  public static notFound(ctx: NextPageContext) {
+    if (ctx && ctx.res) {
+      ctx.res.statusCode = 404;
+    }
+  }
+
   public static async login(model: IApiAuthLoginModel) {
     const result = await this.fetch<IApiAuthLoginModel, IApiAuthToken>(
       API_URLS.AUTH_LOGIN,
@@ -53,12 +71,12 @@ export class ApiAuth extends Api {
     return result;
   }
 
-  public static async getMe() {
+  public static async getMe(ctx?: NextPageContext) {
     const result = await this.fetch<{}, IApiAuthMe>(
       API_URLS.AUTH_ME,
       'get',
       undefined,
-      undefined,
+      ctx,
       true,
     );
 
