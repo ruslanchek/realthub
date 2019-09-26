@@ -17,6 +17,10 @@ export const PageHead: React.FC<IProps> = ({
     logPageView();
   }, []);
 
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
   return (
     <Head>
       <title>{title}</title>
