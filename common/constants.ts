@@ -21,3 +21,9 @@ export const CONFIG = {
   NOTIFICATIONS_PORTAL_ROOT_ID: 'notificationsPortalRoot',
   TOOLTIPS_PORTAL_ROOT_ID: 'tooltipsPortalRoot',
 };
+
+export const COOKIES_SETTINGS = {
+  domain: process.env.BASE_DOMAIN,
+  expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+  path: '/',
+};

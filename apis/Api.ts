@@ -1,6 +1,7 @@
 import axios, { Method } from 'axios';
 import { NextPageContext } from 'next';
-import { parseCookies, setCookie } from 'nookies';
+import { parseCookies, setCookie, destroyCookie } from 'nookies';
+import { COOKIES_SETTINGS } from '../common/constants';
 
 interface IApiFieldError<TInputModel> {
   property: keyof TInputModel;
@@ -20,17 +21,23 @@ interface IApiResult<TInputModel, TOutputModel> {
 
 export abstract class Api {
   private static getToken(ctx?: NextPageContext): string | undefined {
+    console.log(parseCookies(ctx));
+
     return parseCookies(ctx).token;
   }
 
-  private static getAuthHeaders(ctx?: NextPageContext): IApiAuthHeaders {
-    return {
-      Authorization: `Bearer ${this.getToken(ctx)}`,
-    };
+  protected static setToken(token?: string) {
+    setCookie(undefined, 'token', token || '', COOKIES_SETTINGS);
   }
 
-  protected static setToken(token?: string) {
-    setCookie(undefined, 'token', token || '', {});
+  protected static clearToken(ctx?: NextPageContext) {
+    destroyCookie(ctx, 'token', COOKIES_SETTINGS);
+  }
+
+  private static getAuthHeaders(token: string): IApiAuthHeaders {
+    return {
+      Authorization: `Bearer ${token}`,
+    };
   }
 
   public static async fetch<TInputModel = any, TOutputModel = any>(
@@ -44,7 +51,9 @@ export abstract class Api {
       let headers = {};
 
       if (needAuth) {
-        if (!this.getToken()) {
+        const token = this.getToken(ctx);
+
+        if (!token) {
           return {
             error: true,
             generalError: 'NO_TOKEN',
@@ -53,7 +62,7 @@ export abstract class Api {
 
         headers = {
           ...headers,
-          ...this.getAuthHeaders(ctx),
+          ...this.getAuthHeaders(token),
         };
       }
 
@@ -76,7 +85,7 @@ export abstract class Api {
       );
 
       if (e.response.status < 200 || e.response.status >= 400) {
-        this.setToken('');
+        this.clearToken(ctx);
       }
 
       return {
