@@ -3,7 +3,7 @@ import { PageWrapper } from '../../components/PageWrapper';
 import { Header } from '../../components/Header';
 import { PageHead } from '../../components/PageHead';
 import { ApiProperty, IApiPropertyItem } from '../../apis/ApiProperty';
-import { Error404 } from '../../components/404';
+import { ErrorPage } from '../../components/ErrorPage';
 
 interface IProps {
   property?: IApiPropertyItem;
@@ -11,7 +11,7 @@ interface IProps {
 
 const Page: NextPage<IProps> = ({ property }) => {
   if (!property) {
-    return <Error404 />;
+    return <ErrorPage statusCode={404} />;
   }
 
   return (

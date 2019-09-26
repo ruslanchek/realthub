@@ -247,7 +247,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
   ): number => {
     const { modals } = this.state;
     const id = Date.now();
-    
+
     modals.set(id, {
       id,
       showOverlay,
@@ -286,7 +286,7 @@ export class ModalContainer extends React.Component<IProps, IState> {
     return id;
   };
 
-  mouseDownHandler = () => {
+  mouseDownHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     this.isMouseDown = true;
   };
 

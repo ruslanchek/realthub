@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { ModalContainer, Modal, Tabs, TabsContent } from '../ui/module';
+import { ModalContainer, Modal, Tabs, TabsContent, Card } from '../ui/module';
 import { CONFIG } from '../common/constants';
 import { Register } from './Register';
 import { Login } from './Login';
@@ -11,28 +11,29 @@ interface IProps {}
 
 const ModalContent = () => {
   return (
-    <Tabs
-      tabs={[
-        {
-          title: 'Register',
-        },
-        {
-          title: 'Login',
-        },
-      ]}
-    >
-      <Register />
-      <TabsContent
-        content={[
+    <Card>
+      <Tabs
+        tabs={[
           {
-            component: <Register />,
+            title: 'Register',
           },
           {
-            component: <Login />,
+            title: 'Login',
           },
         ]}
-      />
-    </Tabs>
+      >
+        <TabsContent
+          content={[
+            {
+              component: <Register />,
+            },
+            {
+              component: <Login />,
+            },
+          ]}
+        />
+      </Tabs>
+    </Card>
   );
 };
 

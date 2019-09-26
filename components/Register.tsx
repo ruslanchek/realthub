@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { Card, Button, Form, Input, Row } from '../ui/module';
+import { Button, Form, Input, Row } from '../ui/module';
 import { useState } from 'react';
 import { ApiAuth, IApiAuthRegisterModel } from '../apis/ApiAuth';
 
@@ -13,22 +13,19 @@ export const Register = () => {
   };
 
   return (
-    <Card>
-      Register
-      <div css={styles.root}>
-        <Form<IApiAuthRegisterModel> onSubmit={submitForm}>
-          <Row>
-            <Input placeholder="Email" name="email" />
-          </Row>
-          <Row>
-            <Input placeholder="Password" name="password" />
-          </Row>
-          <Button color="default" type="submit" loading={formLoading}>
-            Register
-          </Button>
-        </Form>
-      </div>
-    </Card>
+    <div css={styles.root}>
+      <Form<IApiAuthRegisterModel> onSubmit={submitForm}>
+        <Row>
+          <Input placeholder="Email" name="email" />
+        </Row>
+        <Row>
+          <Input placeholder="Password" name="password" />
+        </Row>
+        <Button color="default" type="submit" loading={formLoading}>
+          Register
+        </Button>
+      </Form>
+    </div>
   );
 };
 

@@ -2,13 +2,19 @@ import { PageWrapper } from './PageWrapper';
 import { PageHead } from './PageHead';
 import { Header } from './Header';
 
-export const Error404: React.FC = () => {
+interface IProps {
+  statusCode: number;
+}
+
+export const ErrorPage: React.FC<IProps> = props => {
+  const { statusCode } = props;
+
   return (
     <PageWrapper>
-      <PageHead title="404" />
+      <PageHead title={statusCode.toString()} />
       <Header theme="inner" />
       <main>
-        <div>404</div>
+        <div>{statusCode.toString()}</div>
       </main>
     </PageWrapper>
   );
