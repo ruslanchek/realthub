@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
-import { CONFIG } from '../common/config';
 import { initGA, logPageView } from '../common/analytics';
+import { CONFIG } from '../common/constants';
 
 interface IProps {
   title?: string;

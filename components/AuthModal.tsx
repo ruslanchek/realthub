@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { ModalContainer, Modal, Tabs, TabsContent } from '../ui/module';
-import { CONFIG } from '../common/config';
+import { CONFIG } from '../common/constants';
 import { Register } from './Register';
 import { Login } from './Login';
 import { authStore } from '../stores/authStore';

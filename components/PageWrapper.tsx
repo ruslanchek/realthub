@@ -3,7 +3,7 @@ import { jsx, css, Global } from '@emotion/core';
 import React from 'react';
 import { GlobalStyles, themeLight, ITheme } from '../ui/module';
 import Color from 'color';
-import { CONFIG } from '../common/config';
+import { CONFIG } from '../common/constants';
 
 const theme: ITheme = {
   BREAKPOINTS: {

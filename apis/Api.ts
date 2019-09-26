@@ -75,7 +75,7 @@ export abstract class Api {
         result.data.message,
       );
 
-      if (generalError === 'INVALID_TOKEN' || generalError === 'INVALID_USER') {
+      if (e.response.status < 200 || e.response.status >= 400) {
         this.setToken('');
       }
 
