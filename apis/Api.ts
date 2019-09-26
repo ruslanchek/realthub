@@ -1,6 +1,6 @@
 import axios, { Method } from 'axios';
 import { NextPageContext } from 'next';
-import { parseCookies, destroyCookie } from 'nookies';
+import { parseCookies, setCookie } from 'nookies';
 
 interface IApiFieldError<TInputModel> {
   property: keyof TInputModel;
@@ -27,6 +27,10 @@ export abstract class Api {
     return {
       Authorization: `Bearer ${this.getToken(ctx)}`,
     };
+  }
+
+  protected static setToken(token?: string) {
+    setCookie(undefined, 'token', token || '', {});
   }
 
   public static async fetch<TInputModel = any, TOutputModel = any>(
@@ -72,7 +76,7 @@ export abstract class Api {
       );
 
       if (generalError === 'INVALID_TOKEN' || generalError === 'INVALID_USER') {
-        destroyCookie(ctx, 'token');
+        this.setToken('');
       }
 
       return {

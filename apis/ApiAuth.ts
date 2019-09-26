@@ -23,10 +23,6 @@ export interface IApiAuthToken {
 }
 
 export class ApiAuth extends Api {
-  private static setToken(token: string) {
-    setCookie(undefined, 'token', token, {});
-  }
-
   public static async login(model: IApiAuthLoginModel) {
     const result = await this.fetch<IApiAuthLoginModel, IApiAuthToken>(
       API_URLS.AUTH_LOGIN,
