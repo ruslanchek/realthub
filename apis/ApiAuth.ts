@@ -70,6 +70,10 @@ export class ApiAuth extends Api {
       authStore.setState({
         me: result.data,
       });
+    } else {
+      authStore.setState({
+        me: undefined,
+      });
     }
 
     return result;
