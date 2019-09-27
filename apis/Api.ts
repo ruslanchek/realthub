@@ -21,8 +21,6 @@ interface IApiResult<TInputModel, TOutputModel> {
 
 export abstract class Api {
   private static getToken(ctx?: NextPageContext): string | undefined {
-    console.log(parseCookies(ctx));
-
     return parseCookies(ctx).token;
   }
 
