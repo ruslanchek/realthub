@@ -18,10 +18,16 @@ export interface IApiPropertyItemParam {
 export interface IApiPropertyItem {
   id: string;
   title: string;
-  address: string;
   price: string;
   images: IApiPropertyItemImage[];
   params: IApiPropertyItemParam[];
+  address: string;
+  address2: string;
+  city: string;
+  zip: string;
+  state: string;
+  country: string;
+  sale: number | undefined;
   geo: {
     lat: number;
     lng: number;

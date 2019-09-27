@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 import { PageWrapper } from '../../components/PageWrapper';
 import { Header } from '../../components/Header';
 import { PageHead } from '../../components/PageHead';
-import { PropertyCard, EViewSize } from '../../components/PropertyCard';
 import { ApiProperty, IApiPropertyItem } from '../../apis/ApiProperty';
 
 interface IProps {
@@ -17,15 +16,7 @@ const Page: NextPage<IProps> = ({ properties }) => (
     <Header theme="inner" />
 
     <main css={styles.items}>
-      <div css={styles.itemsContainer}>
-        {properties.map(item => (
-          <PropertyCard
-            viewSize={EViewSize.Large}
-            key={item.id}
-            property={item}
-          />
-        ))}
-      </div>
+      <div css={styles.itemsContainer}></div>
     </main>
   </PageWrapper>
 );

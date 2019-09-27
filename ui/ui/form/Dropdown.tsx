@@ -281,7 +281,7 @@ export class Dropdown<T = any> extends React.Component<IProps<T>, IState<T>> {
                   width="100%"
                   scrollToIndex={currentScrollingIndex}
                   itemHeight={rowHeightCalculated}
-                  renderRow={(index, itemData) => {
+                  renderRow={(itemData, index) => {
                     return (
                       <div
                         css={styles.itemRow}

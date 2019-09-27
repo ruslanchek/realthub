@@ -1,55 +1,32 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import { useState } from 'react';
+import { jsx, css, keyframes } from '@emotion/core';
 import { Love } from './Love';
 import { IApiPropertyItem } from '../apis/ApiProperty';
-
-export enum EViewSize {
-  Large,
-  Small,
-}
+import { UI_SIZES } from '../common/constants';
 
 interface IProps {
   property: IApiPropertyItem;
-  viewSize: EViewSize;
-  onPoint?: () => void;
+  focused: boolean;
+  onFocus: () => void;
+  onBlur: () => void;
 }
 
-export const PROPERTY_CARD_IMAGE_SIZES: {
-  [key: number]: { width: number; height: number };
-} = {
-  [EViewSize.Large]: {
-    width: 250,
-    height: 200,
-  },
-
-  [EViewSize.Small]: {
-    width: 200,
-    height: 150,
-  },
-};
-
 export const PropertyCard: React.FC<IProps> = props => {
-  const { property, viewSize: viewSize, onPoint } = props;
+  const { property, focused, onFocus, onBlur } = props;
   const image = property.images[0];
-  const [isFocused, setIsFocused] = useState(false);
 
   const handleOnMouseEnter = () => {
-    setIsFocused(true);
-
-    if (onPoint) {
-      onPoint();
-    }
+    onFocus();
   };
 
   const handleOnMouseLeave = () => {
-    setIsFocused(false);
+    onBlur();
   };
 
   return (
     <div
-      css={[styles.root, styles.rootView[viewSize]]}
-      className={isFocused ? 'focused' : ''}
+      css={styles.root}
+      className={focused ? 'focused' : ''}
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
     >
@@ -57,16 +34,21 @@ export const PropertyCard: React.FC<IProps> = props => {
         <Love enabled={false} styles={styles.love} />
         <img
           src={image.src}
-          width={PROPERTY_CARD_IMAGE_SIZES[viewSize].width}
-          height={PROPERTY_CARD_IMAGE_SIZES[viewSize].height}
+          width={UI_SIZES.LIST_CARD_SIZE}
+          height={UI_SIZES.LIST_CARD_SIZE}
           alt={image.title}
         />
       </div>
       <div className="info">
-        <div className="price">${property.price}</div>
+        <div className="price">
+          ${property.sale ? property.sale : property.price}$
+          {property.sale ? <span className="sale">Sale</span> : null}
+        </div>
         <div className="title">{property.title}</div>
         <footer className="footer">
-          <div className="address">{property.address}</div>
+          <div className="address">
+            {property.city} &bull; {property.address}
+          </div>
           <div className="params">
             {property.params.map(param => (
               <span key={param.id}>
@@ -80,6 +62,16 @@ export const PropertyCard: React.FC<IProps> = props => {
   );
 };
 
+const focusedKeyframes = keyframes`
+0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+
 const styles = {
   root: css`
     background-color: white;
@@ -87,14 +79,43 @@ const styles = {
     position: relative;
     overflow: hidden;
     display: flex;
+    margin: 15px;
     justify-content: flex-start;
     transition: box-shadow 0.2s;
+    box-shadow: var(--ELEVATION_SHADOW_1);
+    border-radius: var(--BORDER_RADIUS_SMALL);
+    flex-direction: row;
+
+    &.focused {
+      box-shadow: var(--ELEVATION_SHADOW_2);
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 3px;
+        height: 100%;
+        flex-shrink: 0;
+        right: 0;
+        top: 0;
+        opacity: 1;
+        animation-name: ${focusedKeyframes};
+        animation-duration: 0.2s;
+        animation-fill-mode: backwards;
+        background-color: rgb(var(--TEXT_ACTIVE));
+      }
+    }
+
+    .info {
+      padding: 15px;
+    }
 
     .image {
       position: relative;
 
       > img {
         display: block;
+        object-fit: cover;
       }
     }
 
@@ -110,6 +131,23 @@ const styles = {
       font-size: var(--FONT_SIZE_BASE);
       line-height: var(--FONT_SIZE_BASE);
       color: rgb(var(--TEXT_ACTIVE));
+      display: flex;
+      justify-content: space-between;
+
+      > span {
+        margin: 0 0 0 1ex;
+      }
+    }
+
+    .sale {
+      border: 1px solid #00cec9;
+      padding: 1px 4px;
+      border-radius: var(--BORDER_RADIUS_TINY);
+      color: #00cec9;
+      font-size: var(--FONT_SIZE_SMALL);
+      text-transform: uppercase;
+      font-weight: 600;
+      justify-self: flex-end;
     }
 
     .title {
@@ -138,49 +176,12 @@ const styles = {
 
       > span {
         margin-right: 1ex;
-        background-color: rgba(var(--TEXT), 0.075);
+        background-color: rgb(var(--ELEMENT_BG_ACCENT));
         border-radius: 4px;
         padding: 3px 6px;
       }
     }
   `,
-
-  rootView: {
-    [EViewSize.Large]: css`
-      width: ${PROPERTY_CARD_IMAGE_SIZES[EViewSize.Large].width}px;
-      margin: 0 20px 45px;
-      box-shadow: 0px 20px 25px rgba(175, 175, 175, 0.16),
-        0px 10px 10px rgba(0, 0, 0, 0.04);
-      border-radius: var(--BORDER_RADIUS_LARGE);
-      flex-direction: column;
-
-      &.focused {
-        box-shadow: 0px 20px 25px rgba(175, 175, 175, 0.16),
-          0px 10px 10px rgba(0, 0, 0, 0.04);
-      }
-
-      .info {
-        padding: 20px;
-      }
-    `,
-
-    [EViewSize.Small]: css`
-      margin: 15px;
-      box-shadow: 0px 2px 5px rgba(175, 175, 175, 0.2),
-        0px 5px 5px rgba(0, 0, 0, 0.04);
-      border-radius: var(--BORDER_RADIUS_TINY);
-      flex-direction: row;
-
-      &.focused {
-        box-shadow: 0px 4px 15px rgba(175, 175, 175, 0.2),
-          0px 10px 10px rgba(0, 0, 0, 0.04);
-      }
-
-      .info {
-        padding: 15px;
-      }
-    `,
-  },
 
   love: css`
     position: absolute;

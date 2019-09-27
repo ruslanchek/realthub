@@ -31,6 +31,10 @@ export const COOKIES_SETTINGS = {
   path: '/',
 };
 
+export const UI_SIZES = {
+  LIST_CARD_SIZE: 200,
+};
+
 export const UI_THEME: ITheme = {
   BREAKPOINTS: {
     ...themeLight.BREAKPOINTS,
@@ -48,17 +52,21 @@ export const UI_THEME: ITheme = {
 
     BORDER_RADIUS_LARGE: '8px',
     BORDER_RADIUS_SMALL: '6px',
-    BORDER_RADIUS_TINY: '4px',
+    BORDER_RADIUS_TINY: '2px',
 
-    ELEVATION_SHADOW_1: '0 2px 6px 0 rgba(0, 0, 0, 0.085)',
-    ELEVATION_SHADOW_2: '0 4px 12px rgba(0, 0, 0, 0.075)',
-    ELEVATION_SHADOW_3: '0 15px 45px rgba(0, 0, 0, 0.085)',
+    ELEVATION_SHADOW_1: '0 2px 6px 0 rgba(0, 0, 0, 0.1)',
+    ELEVATION_SHADOW_2: '0 4px 12px rgba(0, 0, 0, 0.125)',
+    ELEVATION_SHADOW_3: '0 15px 45px rgba(0, 0, 0, 0.15)',
   },
 
   COLORS: {
     ...themeLight.COLORS,
-    TEXT_ACTIVE: Color('#0065ff'),
-    TEXT: Color('#253858'),
-    BUTTON_DEFAULT: Color('#0065ff'),
+    TEXT_ACTIVE: Color('#0984e3'),
+    TEXT: Color('#2d3436'),
+    BUTTON_DEFAULT: Color('#0984e3'),
+    ELEMENT_BG_ACCENT: Color('#F1F4F5'),
+    BUTTON_DANGER: Color('#e84393'),
+    SCROLLBAR_THUMB: Color('#b2bec3'),
+    SCROLLBAR_THUMB_HOVER: Color('#BAC4C8'),
   },
 };

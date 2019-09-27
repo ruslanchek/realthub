@@ -12,16 +12,17 @@ interface IProps<TItemData> {
   itemHeight: number;
   renderRow: TRenderRowFunction<TItemData>;
   scrollToIndex?: number;
+  onScroll?: () => void;
 }
 
 type TRenderRowFunction<TItemData> = (
-  index: number,
   itemData: TItemData,
+  index: number,
 ) => React.ReactNode;
 
 interface IListRowDataProps<TItemData> {
   dataList: TItemData[];
-  renderRow: (index: number, itemData: TItemData) => React.ReactNode;
+  renderRow: (itemData: TItemData, index: number) => React.ReactNode;
 }
 
 interface IListRowProps<TItemData> {
@@ -49,7 +50,7 @@ export class VirtualList<TItemData = any> extends React.Component<
   Row = memo((props: IListRowProps<TItemData>) => {
     return (
       <div style={props.style} key={props.index}>
-        {props.data.renderRow(props.index, props.data.dataList[props.index])}
+        {props.data.renderRow(props.data.dataList[props.index], props.index)}
       </div>
     );
   });
@@ -70,6 +71,12 @@ export class VirtualList<TItemData = any> extends React.Component<
     }
   }
 
+  onScroll = () => {
+    if (this.props.onScroll) {
+      this.props.onScroll();
+    }
+  };
+
   render() {
     const { height, width, itemHeight, dataList, renderRow } = this.props;
 
@@ -77,6 +84,7 @@ export class VirtualList<TItemData = any> extends React.Component<
       <FixedSizeList
         height={height}
         itemData={this.createItemData(dataList, renderRow)}
+        onScroll={this.onScroll}
         itemCount={dataList.length}
         itemSize={itemHeight}
         ref={ref => (this.listRef = ref)}

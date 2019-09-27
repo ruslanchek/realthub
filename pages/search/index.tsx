@@ -2,14 +2,15 @@
 import { jsx, css } from '@emotion/core';
 import { useState, useRef, useEffect } from 'react';
 import { NextPage } from 'next';
+import GoogleMapReact from 'google-map-react';
 import { PageWrapper } from '../../components/PageWrapper';
 import { Header } from '../../components/Header';
 import { PageHead } from '../../components/PageHead';
-import GoogleMapReact from 'google-map-react';
-import { PropertyCard, EViewSize } from '../../components/PropertyCard';
+import { PropertyCard } from '../../components/PropertyCard';
 import { IApiPropertyItem, ApiProperty } from '../../apis/ApiProperty';
-
-const Marker = (props: any) => <div css={styles.marker}>{props.text}</div>;
+import { MapMarker } from '../../components/MapMarker';
+import { VirtualList } from '../../ui/module';
+import { UI_SIZES } from '../../common/constants';
 
 interface IProps {
   properties: IApiPropertyItem[];
@@ -23,16 +24,10 @@ const DEFAULT_CENTER = {
 const DEFAULT_ZOOM = 2;
 
 const Page: NextPage<IProps> = ({ properties }) => {
-  const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
+  const [focusedProperty, setFocusedProperty] = useState<
+    IApiPropertyItem | undefined
+  >(undefined);
   const [mapZoom] = useState(DEFAULT_ZOOM);
-  const [scrolling, setScrolling] = useState(false);
-  const scrollingTimeout = useRef<any>();
-
-  useEffect(() => {
-    return () => {
-      clearTimeout(scrollingTimeout.current);
-    };
-  }, []);
 
   return (
     <PageWrapper>
@@ -41,29 +36,29 @@ const Page: NextPage<IProps> = ({ properties }) => {
 
       <main css={styles.root}>
         <section css={styles.search}>
-          <div
-            css={styles.items}
-            onScroll={() => {
-              clearTimeout(scrollingTimeout.current);
-              setScrolling(true);
-              scrollingTimeout.current = setTimeout(() => {
-                setScrolling(false);
-              }, 50);
-            }}
-          >
-            <div className={scrolling ? 'scrolling' : ''}>
-              {properties.map(item => (
+          <VirtualList<IApiPropertyItem>
+            dataList={properties}
+            height={840}
+            width={'100%'}
+            itemHeight={UI_SIZES.LIST_CARD_SIZE + 15}
+            renderRow={item => {
+              return (
                 <PropertyCard
-                  onPoint={() => {
-                    setMapCenter(item.geo);
+                  focused={Boolean(
+                    focusedProperty && focusedProperty.id === item.id,
+                  )}
+                  onFocus={() => {
+                    setFocusedProperty(item);
                   }}
-                  viewSize={EViewSize.Small}
+                  onBlur={() => {
+                    setFocusedProperty(undefined);
+                  }}
                   key={item.id}
                   property={item}
                 />
-              ))}
-            </div>
-          </div>
+              );
+            }}
+          />
         </section>
 
         <section css={styles.map}>
@@ -71,11 +66,23 @@ const Page: NextPage<IProps> = ({ properties }) => {
             bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY || '' }}
             defaultCenter={DEFAULT_CENTER}
             defaultZoom={DEFAULT_ZOOM}
-            center={mapCenter}
             zoom={mapZoom}
           >
             {properties.map((item, index) => (
-              <Marker key={item.id} text={index} {...item.geo} />
+              <MapMarker
+                focused={Boolean(
+                  focusedProperty && focusedProperty.id === item.id,
+                )}
+                key={item.id}
+                property={item}
+                onFocus={() => {
+                  setFocusedProperty(item);
+                }}
+                onBlur={() => {
+                  setFocusedProperty(undefined);
+                }}
+                {...item.geo}
+              />
             ))}
           </GoogleMapReact>
         </section>
@@ -99,33 +106,17 @@ const styles = {
     width: 600px;
     min-width: 600px;
     height: calc(100vh - 50px);
-  `,
+    background-color: rgb(var(--ELEMENT_BG_ACCENT));
 
-  items: css`
-    flex-grow: 1;
-    height: 100%;
-    overflow: auto;
-    background-color: #eee;
-
-    .scrolling {
-      pointer-events: none;
+    &.scrolling {
+      .scrolling-item {
+        pointer-events: none;
+      }
     }
   `,
 
   map: css`
     flex-grow: 1;
-  `,
-
-  marker: css`
-    background: rgb(var(--TEXT_ACCENT));
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    border: 2px solid #fff;
-    box-sizing: border-box;
-    color: #fff;
-    text-align: center;
-    line-height: 20px;
   `,
 };
 
