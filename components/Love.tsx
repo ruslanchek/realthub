@@ -20,9 +20,9 @@ export const Love = React.memo<IProps>(props => {
       }}
     >
       {props.enabled ? (
-        <IoMdHeart size="22px" color={'rgb(var(--TEXT_ACTIVE))'} />
+        <IoMdHeart size="20px" color={'rgb(var(--TEXT_ACTIVE))'} />
       ) : (
-        <IoMdHeartEmpty size="22px" color={'rgb(var(--TEXT_ACTIVE))'} />
+        <IoMdHeartEmpty size="20px" color={'rgb(var(--TEXT_ACTIVE))'} />
       )}
     </div>
   );
@@ -32,9 +32,9 @@ const styles = {
   love: css`
     background-color: #fff;
     box-sizing: border-box;
-    width: 34px;
-    height: 34px;
-    line-height: 47px;
+    width: 30px;
+    height: 30px;
+    line-height: 42px;
     border-radius: 50%;
     text-align: center;
     cursor: pointer;

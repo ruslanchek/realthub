@@ -80,25 +80,17 @@ const styles = {
   root: css`
     display: flex;
     align-items: center;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    z-index: 10;
     padding: 0 15px;
     height: 50px;
-    border-radius: var(--BORDER_RADIUS_LARGE);
   `,
 
   rootTheme: {
     main: css`
       background-color: rgb(var(--WHITE));
-      box-shadow: var(--ELEVATION_SHADOW_2);
     `,
 
     inner: css`
       background-color: rgb(var(--TEXT_ACTIVE));
-      box-shadow: 0 4px 12px hsla(var(--TEXT_ACTIVE_HSL_DARKEN), 0.2);
     `,
   },
 

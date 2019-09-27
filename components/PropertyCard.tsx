@@ -19,13 +19,13 @@ export const PROPERTY_CARD_IMAGE_SIZES: {
   [key: number]: { width: number; height: number };
 } = {
   [EViewSize.Large]: {
-    width: 300,
-    height: 250,
+    width: 250,
+    height: 200,
   },
 
   [EViewSize.Small]: {
-    width: 250,
-    height: 208,
+    width: 200,
+    height: 150,
   },
 };
 
@@ -165,7 +165,7 @@ const styles = {
     `,
 
     [EViewSize.Small]: css`
-      margin: 20px;
+      margin: 15px;
       box-shadow: 0px 2px 5px rgba(175, 175, 175, 0.2),
         0px 5px 5px rgba(0, 0, 0, 0.04);
       border-radius: var(--BORDER_RADIUS_TINY);

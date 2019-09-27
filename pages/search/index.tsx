@@ -98,13 +98,14 @@ const styles = {
   search: css`
     width: 600px;
     min-width: 600px;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 50px);
   `,
 
   items: css`
     flex-grow: 1;
     height: 100%;
     overflow: auto;
+    background-color: #eee;
 
     .scrolling {
       pointer-events: none;

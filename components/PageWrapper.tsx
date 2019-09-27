@@ -22,7 +22,6 @@ const styles = {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
     box-sizing: border-box;
   `,
 
