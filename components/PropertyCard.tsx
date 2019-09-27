@@ -3,6 +3,7 @@ import { jsx, css, keyframes } from '@emotion/core';
 import { Love } from './Love';
 import { IApiPropertyItem } from '../apis/ApiProperty';
 import { UI_SIZES } from '../common/constants';
+import React from 'react';
 
 interface IProps {
   property: IApiPropertyItem;
@@ -11,7 +12,7 @@ interface IProps {
   onBlur: () => void;
 }
 
-export const PropertyCard: React.FC<IProps> = props => {
+export const PropertyCard = React.memo<IProps>(props => {
   const { property, focused, onFocus, onBlur } = props;
   const image = property.images[0];
 
@@ -60,14 +61,14 @@ export const PropertyCard: React.FC<IProps> = props => {
       </div>
     </div>
   );
-};
+});
 
 const focusedKeyframes = keyframes`
-0% {
+  from {
     opacity: 0;
   }
 
-  100% {
+  to {
     opacity: 1;
   }
 `;
@@ -82,7 +83,7 @@ const styles = {
     margin: 15px;
     justify-content: flex-start;
     transition: box-shadow 0.2s;
-    box-shadow: var(--ELEVATION_SHADOW_1);
+    /* box-shadow: var(--ELEVATION_SHADOW_1); */
     border-radius: var(--BORDER_RADIUS_SMALL);
     flex-direction: row;
 
@@ -177,7 +178,7 @@ const styles = {
       > span {
         margin-right: 1ex;
         background-color: rgb(var(--ELEMENT_BG_ACCENT));
-        border-radius: 4px;
+        border-radius: var(--BORDER_RADIUS_TINY);
         padding: 3px 6px;
       }
     }

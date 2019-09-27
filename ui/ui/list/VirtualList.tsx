@@ -80,19 +80,31 @@ export class VirtualList<TItemData = any> extends React.Component<
   render() {
     const { height, width, itemHeight, dataList, renderRow } = this.props;
 
-    return (
-      <FixedSizeList
-        height={height}
-        itemData={this.createItemData(dataList, renderRow)}
-        onScroll={this.onScroll}
-        itemCount={dataList.length}
-        itemSize={itemHeight}
-        ref={ref => (this.listRef = ref)}
-        width={width}
-        outerElementType={CustomScrollbarsVirtualList}
-      >
-        {this.Row}
-      </FixedSizeList>
-    );
+    try {
+      window.innerWidth;
+
+      return (
+        <FixedSizeList
+          height={height}
+          itemData={this.createItemData(dataList, renderRow)}
+          onScroll={this.onScroll}
+          itemCount={dataList.length}
+          itemSize={itemHeight}
+          ref={ref => (this.listRef = ref)}
+          width={width}
+          outerElementType={CustomScrollbarsVirtualList}
+        >
+          {this.Row}
+        </FixedSizeList>
+      );
+    } catch (e) {
+      return (
+        <CustomScrollbars useNative>
+          {dataList.map((item, index) => {
+            return renderRow(item, index);
+          })}
+        </CustomScrollbars>
+      );
+    }
   }
 }

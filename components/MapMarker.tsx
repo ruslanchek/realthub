@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css, keyframes } from '@emotion/core';
 import { IApiPropertyItem } from '../apis/ApiProperty';
 import { useState } from 'react';
+import React from 'react';
 
 interface IProps {
   property: IApiPropertyItem;
@@ -14,7 +15,7 @@ interface IProps {
 
 const SIZE = 16;
 
-export const MapMarker: React.FC<IProps> = props => {
+export const MapMarker = React.memo<IProps>(props => {
   const { property, focused, onFocus, onBlur } = props;
 
   const onMouseEnter = () => {
@@ -35,7 +36,7 @@ export const MapMarker: React.FC<IProps> = props => {
       <i className="dot" />
     </div>
   );
-};
+});
 
 const styles = {
   marker: css`
@@ -54,6 +55,7 @@ const styles = {
       box-shadow: var(--ELEVATION_SHADOW_1);
       transition: transform 0.2s, background-color 0.2s;
       cursor: pointer;
+      opacity: 1;
     }
 
     &.focused {

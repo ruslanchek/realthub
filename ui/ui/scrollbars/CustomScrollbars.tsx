@@ -188,6 +188,8 @@ const styles = {
 
   rootNative: css`
     overflow: auto;
+    height: 100%;
+    width: 100%;
   `,
 
   view: css`

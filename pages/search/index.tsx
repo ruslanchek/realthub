@@ -11,6 +11,7 @@ import { IApiPropertyItem, ApiProperty } from '../../apis/ApiProperty';
 import { MapMarker } from '../../components/MapMarker';
 import { VirtualList } from '../../ui/module';
 import { UI_SIZES } from '../../common/constants';
+import React from 'react';
 
 interface IProps {
   properties: IApiPropertyItem[];
@@ -28,6 +29,15 @@ const Page: NextPage<IProps> = ({ properties }) => {
     IApiPropertyItem | undefined
   >(undefined);
   const [mapZoom] = useState(DEFAULT_ZOOM);
+  const [scrolling, setScrolling] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
+  const scrollingTimeout = useRef<any>();
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(scrollingTimeout.current);
+    };
+  }, []);
 
   return (
     <PageWrapper>
@@ -36,55 +46,71 @@ const Page: NextPage<IProps> = ({ properties }) => {
 
       <main css={styles.root}>
         <section css={styles.search}>
-          <VirtualList<IApiPropertyItem>
-            dataList={properties}
-            height={840}
-            width={'100%'}
-            itemHeight={UI_SIZES.LIST_CARD_SIZE + 15}
-            renderRow={item => {
-              return (
-                <PropertyCard
-                  focused={Boolean(
-                    focusedProperty && focusedProperty.id === item.id,
-                  )}
-                  onFocus={() => {
-                    setFocusedProperty(item);
-                  }}
-                  onBlur={() => {
-                    setFocusedProperty(undefined);
-                  }}
-                  key={item.id}
-                  property={item}
-                />
-              );
+          <div
+            css={styles.items}
+            onScroll={() => {
+              clearTimeout(scrollingTimeout.current);
+              setScrolling(true);
+              scrollingTimeout.current = setTimeout(() => {
+                setScrolling(false);
+              }, 100);
             }}
-          />
+          >
+            <div
+              css={styles.itemsInner}
+              className={scrolling ? 'scrolling' : ''}
+            >
+              {properties.map(item => {
+                return (
+                  <PropertyCard
+                    focused={Boolean(
+                      focusedProperty && focusedProperty.id === item.id,
+                    )}
+                    onFocus={() => {
+                      setFocusedProperty(item);
+                    }}
+                    onBlur={() => {
+                      setFocusedProperty(undefined);
+                    }}
+                    key={item.id}
+                    property={item}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </section>
 
         <section css={styles.map}>
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY || '' }}
-            defaultCenter={DEFAULT_CENTER}
-            defaultZoom={DEFAULT_ZOOM}
-            zoom={mapZoom}
-          >
-            {properties.map((item, index) => (
-              <MapMarker
-                focused={Boolean(
-                  focusedProperty && focusedProperty.id === item.id,
-                )}
-                key={item.id}
-                property={item}
-                onFocus={() => {
-                  setFocusedProperty(item);
-                }}
-                onBlur={() => {
-                  setFocusedProperty(undefined);
-                }}
-                {...item.geo}
-              />
-            ))}
-          </GoogleMapReact>
+          {process.browser && (
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY || '' }}
+              defaultCenter={DEFAULT_CENTER}
+              defaultZoom={DEFAULT_ZOOM}
+              zoom={mapZoom}
+              onTilesLoaded={() => {
+                setMapReady(true);
+              }}
+            >
+              {mapReady &&
+                properties.map((item, index) => (
+                  <MapMarker
+                    focused={Boolean(
+                      focusedProperty && focusedProperty.id === item.id,
+                    )}
+                    key={item.id}
+                    property={item}
+                    onFocus={() => {
+                      setFocusedProperty(item);
+                    }}
+                    onBlur={() => {
+                      setFocusedProperty(undefined);
+                    }}
+                    {...item.geo}
+                  />
+                ))}
+            </GoogleMapReact>
+          )}
         </section>
       </main>
     </PageWrapper>
@@ -107,11 +133,17 @@ const styles = {
     min-width: 600px;
     height: calc(100vh - 50px);
     background-color: rgb(var(--ELEMENT_BG_ACCENT));
+  `,
 
+  items: css`
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  `,
+
+  itemsInner: css`
     &.scrolling {
-      .scrolling-item {
-        pointer-events: none;
-      }
+      pointer-events: none;
     }
   `,
 
