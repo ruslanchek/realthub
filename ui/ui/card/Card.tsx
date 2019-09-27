@@ -33,17 +33,17 @@ const styles = {
   root: css`
     border-radius: var(--BORDER_RADIUS_LARGE);
     background-color: rgb(var(--ELEMENT_BG));
-    box-shadow: var(--ELEVATION_SHADOW_2);
+    box-shadow: var(--ELEVATION_SHADOW_3);
     display: flex;
     flex-direction: column;
   `,
 
   header: css`
-    padding: 20px 20px 0;
+    padding: 40px 40px 0;
   `,
 
   body: css`
-    padding: 20px;
+    padding: 40px;
     flex-grow: 1;
   `,
 

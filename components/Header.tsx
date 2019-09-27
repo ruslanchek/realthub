@@ -60,6 +60,7 @@ export const Header: React.FC<IProps> = ({ theme }) => {
               type="button"
               color="white"
               size="small"
+              strokeOnly
               onClick={() => {
                 authStore.setState({
                   authModal: true,
@@ -79,18 +80,25 @@ const styles = {
   root: css`
     display: flex;
     align-items: center;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+    padding: 0 15px;
+    height: 50px;
+    border-radius: var(--BORDER_RADIUS_LARGE);
   `,
 
   rootTheme: {
     main: css`
-      height: 100px;
-      padding: 0 40px;
+      background-color: rgb(var(--WHITE));
+      box-shadow: var(--ELEVATION_SHADOW_2);
     `,
 
     inner: css`
-      padding: 0 20px;
-      height: 55px;
-      background: rgb(var(--TEXT_ACTIVE));
+      background-color: rgb(var(--TEXT_ACTIVE));
+      box-shadow: 0 4px 12px hsla(var(--TEXT_ACTIVE_HSL_DARKEN), 0.2);
     `,
   },
 
@@ -120,16 +128,16 @@ const styles = {
   logoTheme: {
     main: css`
       background-image: url('/static/assets/logo.png');
-      width: 190px;
-      height: 35px;
-      top: -6px;
+      width: 120px;
+      height: 22px;
+      top: -3px;
     `,
 
     inner: css`
       background-image: url('/static/assets/logo-w.png');
-      width: 141px;
-      height: 26px;
-      top: -4px;
+      width: 120px;
+      height: 22px;
+      top: -3px;
     `,
   },
 
