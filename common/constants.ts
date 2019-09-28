@@ -33,8 +33,8 @@ export const COOKIES_SETTINGS = {
 
 export const UI_SIZES = {
   LIST_IMAGE_SIZE: 220,
-  MARKER_IMAGE_SIZE: 100,
-  IMAGE_HEIGHT_RATIO: 0.75,
+  MARKER_IMAGE_SIZE: 80,
+  IMAGE_HEIGHT_RATIO: 1,
 };
 
 export const UI_THEME: ITheme = {
