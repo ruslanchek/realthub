@@ -16,7 +16,7 @@ export const API_URLS = {
   PROPERTY_ITEM: `${process.env.API_URL}/property/:id`,
 };
 
-export const CONFIG = {
+export const UI_CONFIG = {
   DEFAULT_TITLE: 'Realthub',
   DEFAULT_DESCRIPTION: '',
 
@@ -32,7 +32,9 @@ export const COOKIES_SETTINGS = {
 };
 
 export const UI_SIZES = {
-  LIST_CARD_SIZE: 200,
+  LIST_IMAGE_SIZE: 220,
+  MARKER_IMAGE_SIZE: 100,
+  IMAGE_HEIGHT_RATIO: 0.75,
 };
 
 export const UI_THEME: ITheme = {
@@ -45,10 +47,11 @@ export const UI_THEME: ITheme = {
     FONT_FAMILY: "'Source Sans Pro', sans-serif;",
     GLOBAL_LINE_HEIGHT: '1.3',
 
-    FONT_SIZE_BASE: '15px',
-    FONT_SIZE_MEDIUM: '19px',
     FONT_SIZE_LARGE: '25px',
+    FONT_SIZE_MEDIUM: '18px',
+    FONT_SIZE_BASE: '16px',
     FONT_SIZE_SMALL: '14px',
+    FONT_SIZE_TINY: '12px',
 
     BORDER_RADIUS_LARGE: '8px',
     BORDER_RADIUS_SMALL: '6px',
@@ -61,12 +64,13 @@ export const UI_THEME: ITheme = {
 
   COLORS: {
     ...themeLight.COLORS,
-    TEXT_ACTIVE: Color('#0984e3'),
-    TEXT: Color('#2d3436'),
-    BUTTON_DEFAULT: Color('#0984e3'),
-    ELEMENT_BG_ACCENT: Color('#F1F4F5'),
-    BUTTON_DANGER: Color('#e84393'),
-    SCROLLBAR_THUMB: Color('#b2bec3'),
-    SCROLLBAR_THUMB_HOVER: Color('#BAC4C8'),
+    TEXT_ACTIVE: Color('#3742fa'),
+    TEXT: Color('#2f3542'),
+    BUTTON_DEFAULT: Color('#3742fa'),
+    ELEMENT_BG_ACCENT: Color('#f1f2f6'),
+    BUTTON_DANGER: Color('#ff4757'),
+    BUTTON_SUCCESS: Color('#2bcbba'),
+    SCROLLBAR_THUMB: Color('#dfe4ea'),
+    SCROLLBAR_THUMB_HOVER: Color('#ced6e0'),
   },
 };

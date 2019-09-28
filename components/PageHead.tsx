@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { initGA, logPageView } from '../common/analytics';
-import { CONFIG } from '../common/constants';
+import { UI_CONFIG } from '../common/constants';
 
 interface IProps {
   title?: string;
@@ -9,8 +9,8 @@ interface IProps {
 }
 
 export const PageHead: React.FC<IProps> = ({
-  title = CONFIG.DEFAULT_TITLE,
-  description = CONFIG.DEFAULT_DESCRIPTION,
+  title = UI_CONFIG.DEFAULT_TITLE,
+  description = UI_CONFIG.DEFAULT_DESCRIPTION,
 }) => {
   useEffect(() => {
     initGA();

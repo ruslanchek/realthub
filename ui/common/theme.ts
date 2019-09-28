@@ -33,6 +33,7 @@ export interface ITheme {
     FONT_SIZE_MEDIUM: string;
     FONT_SIZE_BASE: string;
     FONT_SIZE_SMALL: string;
+    FONT_SIZE_TINY: string;
 
     SCROLLBAR_TRACK_SIZE: string;
 
@@ -116,6 +117,7 @@ export const themeDark: ITheme = {
     FONT_SIZE_MEDIUM: '18px',
     FONT_SIZE_BASE: '14px',
     FONT_SIZE_SMALL: '12px',
+    FONT_SIZE_TINY: '10px',
 
     SCROLLBAR_TRACK_SIZE: '5px',
 
@@ -200,6 +202,7 @@ export const themeLight: ITheme = {
     FONT_SIZE_MEDIUM: '18px',
     FONT_SIZE_BASE: '14px',
     FONT_SIZE_SMALL: '12px',
+    FONT_SIZE_TINY: '10px',
 
     SCROLLBAR_TRACK_SIZE: '5px',
 
@@ -241,7 +244,7 @@ export const themeLight: ITheme = {
     BUTTON_DEFAULT: Color('#367cff'),
     BUTTON_SUCCESS: Color('#04be7f'),
     BUTTON_ACCENT: Color('#6439e5'),
-    BUTTON_FADED: Color('#3e4859'),
+    BUTTON_FADED: Color('#9ea2b2'),
     BUTTON_DANGER: Color('#fe7364'),
     BUTTON_FACEBOOK: Color('#1774ec'),
     BUTTON_GOOGLE: Color('#f8f8f8'),

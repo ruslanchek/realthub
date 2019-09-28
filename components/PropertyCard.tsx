@@ -35,8 +35,8 @@ export const PropertyCard = React.memo<IProps>(props => {
         <Love enabled={false} styles={styles.love} />
         <img
           src={image.src}
-          width={UI_SIZES.LIST_CARD_SIZE}
-          height={UI_SIZES.LIST_CARD_SIZE}
+          width={UI_SIZES.LIST_IMAGE_SIZE}
+          height={UI_SIZES.LIST_IMAGE_SIZE * UI_SIZES.IMAGE_HEIGHT_RATIO}
           alt={image.title}
         />
       </div>
@@ -83,7 +83,7 @@ const styles = {
     margin: 15px;
     justify-content: flex-start;
     transition: box-shadow 0.2s;
-    /* box-shadow: var(--ELEVATION_SHADOW_1); */
+    box-shadow: var(--ELEVATION_SHADOW_1);
     border-radius: var(--BORDER_RADIUS_SMALL);
     flex-direction: row;
 
@@ -112,6 +112,7 @@ const styles = {
     }
 
     .image {
+      flex-shrink: 0;
       position: relative;
 
       > img {
@@ -129,7 +130,7 @@ const styles = {
 
     .price {
       font-weight: 700;
-      font-size: var(--FONT_SIZE_BASE);
+      font-size: var(--FONT_SIZE_MEDIUM);
       line-height: var(--FONT_SIZE_BASE);
       color: rgb(var(--TEXT_ACTIVE));
       display: flex;
@@ -141,14 +142,15 @@ const styles = {
     }
 
     .sale {
-      border: 1px solid #00cec9;
-      padding: 1px 4px;
+      border: 1px solid rgb(var(--BUTTON_SUCCESS));
+      padding: 0 4px;
       border-radius: var(--BORDER_RADIUS_TINY);
-      color: #00cec9;
+      color: rgb(var(--BUTTON_SUCCESS));
       font-size: var(--FONT_SIZE_SMALL);
       text-transform: uppercase;
       font-weight: 600;
       justify-self: flex-end;
+      box-sizing: border-box;
     }
 
     .title {

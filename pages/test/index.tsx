@@ -14,7 +14,6 @@ const Page: NextPage<IProps> = ({ properties }) => (
   <PageWrapper>
     <PageHead />
     <Header theme="inner" />
-
     <main css={styles.items}>
       <div css={styles.itemsContainer}></div>
     </main>
