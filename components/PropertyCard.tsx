@@ -94,7 +94,7 @@ const styles = {
         content: '';
         display: block;
         position: absolute;
-        width: 3px;
+        width: 5px;
         height: 100%;
         flex-shrink: 0;
         right: 0;
