@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { ModalContainer, Modal, Tabs, TabsContent, Card } from '../ui/module';
-import { UI_CONFIG } from '../common/constants';
+import { CONFIG } from '../common/constants';
 import { Register } from './Register';
 import { Login } from './Login';
 import { authStore } from '../stores/authStore';
@@ -41,9 +41,7 @@ export const AuthModal: React.FC<IProps> = () => {
   const authStoreState = useStore(authStore);
 
   return (
-    <ModalContainer
-      rootContainerSelector={`#${UI_CONFIG.MODALS_PORTAL_ROOT_ID}`}
-    >
+    <ModalContainer rootContainerSelector={`#${CONFIG.MODALS_PORTAL_ROOT_ID}`}>
       {authStoreState.authModal && (
         <Modal
           showOverlay

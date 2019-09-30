@@ -4,7 +4,7 @@ import { IApiPropertyItem } from '../apis/ApiProperty';
 import { useState } from 'react';
 import React from 'react';
 import { Tooltip } from '../ui/module';
-import { UI_CONFIG, UI_SIZES } from '../common/constants';
+import { CONFIG, UI_SIZES } from '../common/constants';
 
 interface IProps {
   property: IApiPropertyItem;

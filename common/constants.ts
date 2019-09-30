@@ -16,7 +16,7 @@ export const API_URLS = {
   PROPERTY_ITEM: `${process.env.API_URL}/property/:id`,
 };
 
-export const UI_CONFIG = {
+export const CONFIG = {
   DEFAULT_TITLE: 'Realthub',
   DEFAULT_DESCRIPTION: '',
 

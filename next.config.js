@@ -14,6 +14,7 @@ const vars = {
     BASE_DOMAIN: 'realthub.com',
     API_URL: 'https://realthub-api.onrender.com',
     GOOGLE_MAPS_API_KEY: 'AIzaSyCx2_EqHzYNxnEf0kURZFbjxYbuF8jqbK0',
+    GA_CODE: 'UA-147616047-1',
   },
 }[env];
 

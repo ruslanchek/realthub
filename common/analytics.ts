@@ -5,7 +5,7 @@ export const initGA = () => {
     !(window as any).GA_INITIALIZED &&
     process.env.NODE_ENV === 'production'
   ) {
-    ReactGA.initialize('UA-147616047-1');
+    ReactGA.initialize(process.env.GA_CODE || '');
     (window as any).GA_INITIALIZED = true;
   }
 };
