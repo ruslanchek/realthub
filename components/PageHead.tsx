@@ -27,8 +27,8 @@ export const PageHead: React.FC<IProps> = ({
       <meta name="description" content={description} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="manifest" href="/static/manifest.json" />
-      <meta name="apple-mobile-web-app-title" content="Realthub" />
-      <meta name="application-name" content="Realthub" />
+      <meta name="apple-mobile-web-app-title" content={CONFIG.DEFAULT_TITLE} />
+      <meta name="application-name" content={CONFIG.DEFAULT_TITLE} />
       <meta name="msapplication-TileColor" content="#2b5797" />
       <meta name="theme-color" content="#ffffff" />
       <link
