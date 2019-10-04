@@ -24,6 +24,12 @@ export abstract class Api {
     return parseCookies(ctx).token;
   }
 
+  public static notFound(ctx: NextPageContext) {
+    if (ctx && ctx.res) {
+      ctx.res.statusCode = 404;
+    }
+  }
+
   protected static setToken(token?: string) {
     setCookie(undefined, 'token', token || '', COOKIES_SETTINGS);
   }
