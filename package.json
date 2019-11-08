@@ -30,13 +30,13 @@
 		"react-stores": "^2.11.5",
 		"react-transition-group": "^4.3.0",
 		"react-window": "^1.8.5",
-		"typescript": "^3.5.3"
+		"typescript": "^3.7.2"
 	},
 	"devDependencies": {
 		"@types/color": "^3.0.0",
 		"@types/faker": "^4.1.5",
 		"@types/google-map-react": "^0.23.12",
-		"@types/node": "^12.6.8",
+		"@types/node": "^12.12.6",
 		"@types/react": "^16.8.23",
 		"@types/react-dom": "^16.8.5",
 		"@types/react-transition-group": "^4.2.2",
