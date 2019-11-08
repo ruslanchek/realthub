@@ -118,7 +118,9 @@ export abstract class Api {
 
         if (constraints) {
           for (let key in constraints) {
-            errors.push(constraints[key]);
+            if (constraints.hasOwnProperty(key)) {
+              errors.push(constraints[key]);
+            }
           }
         }
 
